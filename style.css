@@ -1,0 +1,181 @@
+:root {
+    --primary-color:#007cb1;
+    --grey-color: #aaaaaa;
+    --light-grey-color: #d2d2d2;
+    --dark-blue-color: #4b627e;
+    --dark-orange-color:#db9220;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+#app {
+    display: flex;
+    flex-flow: column;
+    height: 95vh;
+}
+
+#header {
+    flex: 0 0 content;
+}
+
+#frame {
+    flex: 1;
+    padding: 2em;
+}
+
+#footer {
+    flex: 0 0 content;
+    display: flex;
+    justify-content: space-between;
+}
+
+button.active {
+    font-weight: bold;
+}
+
+#loading {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* breadcrumbs */
+.breadcrumb {
+    font: .8em sans-serif;
+    list-style: none;
+    user-select: none;
+}
+
+
+.breadcrumb li {
+    background-color: var(--grey-color);
+    font-weight: bold;
+    box-sizing: border-box;
+    color: #fff;
+    display: inline-block;
+    max-height: 2em;
+    position: relative;
+    text-decoration: none;
+}
+
+.breadcrumb li:before {
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-left: 1em solid #fff;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -1.25em;
+    z-index: 1;
+}
+
+.breadcrumb li div {
+    display: flex;
+    height: 2em;
+    column-gap: 1em;
+    padding: 0em 1em 0em 1.5rem;
+    align-items: center;
+}
+.breadcrumb li div span {
+    display: flex;
+}
+span.breadcrumb-index {
+    border: 2px solid white;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.breadcrumb li:not(:last-child):after {
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-left: 1em solid var(--grey-color);
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -.98em;
+    z-index: 1;
+}
+
+.breadcrumb li.active {
+    background-color: var(--primary-color);
+    pointer-events: none;
+}
+
+.breadcrumb li.active:after {
+    border-left-color: var(--primary-color);
+}
+/* end of breadcrumbs */
+/* buttons */
+button {
+    cursor: pointer;
+}
+.button-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    padding: .7em;
+}
+.button-primary:hover {
+    opacity: .8;
+}
+.button-cancel {
+    background-color: white;
+    border: 1px solid var(--grey-color);
+    color: black;
+    padding: .7em;
+    min-width: 7em;
+}
+/* end of buttons */
+/* form session */
+.form-session-title {
+    color: var(--dark-blue-color);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 0.5em;
+    border-bottom: 1px solid var(--light-grey-color);
+    padding-bottom: .3em;
+}
+
+.form-session-title h4 {
+    margin: 0;
+}
+button.form-session-collapse {
+    background: var(--dark-orange-color);
+    padding: 0;
+    border: none;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+button.form-session-collapse svg {
+    fill: white;
+}
+button.form-session-collapse:hover {
+    opacity: .7;
+}
+.form-session-content {
+    color: var(--dark-blue-color);
+}
+.form-session-content label {
+    color: black;
+}
+/* end of form session */
