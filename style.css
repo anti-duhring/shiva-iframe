@@ -148,7 +148,8 @@ button {
     background-color: var(--input-grey-color);
     border: none;
     outline: none;
-    padding: .5em;
+    padding: 1em;
+    min-width: 17em;
 }
 .select-input select{
     appearance: none;

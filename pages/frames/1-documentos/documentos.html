@@ -13,11 +13,11 @@
                 <p>Deseja usar a DUE para preencher o formulário?</p>
                 <p>
                     <span>
-                        <input type="radio" name="yes_due" id="yes_due" value="CSS">
+                        <input type="radio" name="use_due" id="yes_due" checked>
                         <label for="yes_due">Sim</label>
                     </span>
                     <span>
-                        <input type="radio" name="no_due" id="no_due" value="CSS">
+                        <input type="radio" name="use_due" id="no_due">
                         <label for="no_due">Não</label>
                     </span>
                 </p>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-session-row">
                 <p>
-                    <table class="form-table">
+                    <table class="form-table" id="dues">
                         <thead>
                              <tr>
                                 <th>DUE</th>
@@ -39,15 +39,9 @@
                              </tr>
                         </thead> 
                         <tbody>
-                            <tr>
-                                <td>22BR0000047315</td>
-                                <td class="table-action-cell">
-                                    <button class="table-action-button">
-                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
-                                        </svg>
-                                    </button>
-                                </td>
+                            <tr class="form-table-empty-tr">
+                                <td>Nenhum item cadastrado</td>
+                                <td class="table-action-cell"></td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -113,22 +107,15 @@
                 <p>Deseja usar a CCT para preencher o formulário?</p>
                 <p>
                     <span>
-                        <input type="radio" name="yes_cct" id="yes_cct" value="CSS">
+                        <input type="radio" name="yes_cct" id="yes_cct">
                         <label for="yes_cct">Sim</label>
                     </span>
                     <span>
-                        <input type="radio" name="no_cct" id="no_cct" value="CSS">
+                        <input type="radio" name="no_cct" id="no_cct">
                         <label for="no_cct">Não</label>
                     </span>
                 </p>
             </div>
-            <!-- <div class="form-session-row">
-                <p>DUE</p>
-                <p>
-                    <input class="text-input" placeholder="Digite o número da DUE" type="text" name="due" id="due">
-                    <button class="button-primary" id="add-due">Adicionar</button>
-                </p>
-            </div> -->
             <div class="form-session-row">
                 <p>
                     <table class="form-table">
