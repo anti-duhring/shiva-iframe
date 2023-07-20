@@ -2,12 +2,14 @@
     --primary-color:#007cb1;
     --grey-color: #aaaaaa;
     --light-grey-color: #d2d2d2;
+    --input-grey-color: #e0e2e3;
     --dark-blue-color: #4b627e;
     --dark-orange-color:#db9220;
 }
 
 body {
     font-family: sans-serif;
+    font-size: .8em;
 }
 
 #app {
@@ -29,6 +31,7 @@ body {
     flex: 0 0 content;
     display: flex;
     justify-content: space-between;
+    padding: 2em;
 }
 
 button.active {
@@ -54,8 +57,8 @@ button.active {
     font: .8em sans-serif;
     list-style: none;
     user-select: none;
+    padding-left: 2em;
 }
-
 
 .breadcrumb li {
     background-color: var(--grey-color);
@@ -63,20 +66,19 @@ button.active {
     box-sizing: border-box;
     color: #fff;
     display: inline-block;
-    max-height: 2em;
     position: relative;
     text-decoration: none;
 }
 
 .breadcrumb li:before {
-    border-top: 1em solid transparent;
-    border-bottom: 1em solid transparent;
+    border-top: 1.3em solid transparent;
+    border-bottom: 1.3em solid transparent;
     border-left: 1em solid #fff;
     content: "";
     position: absolute;
     top: 0;
     bottom: 0;
-    right: -1.25em;
+    right: -1.2em;
     z-index: 1;
 }
 
@@ -84,7 +86,7 @@ button.active {
     display: flex;
     height: 2em;
     column-gap: 1em;
-    padding: 0em 1em 0em 1.5rem;
+    padding: .3em 1em .3em 1.5rem;
     align-items: center;
 }
 .breadcrumb li div span {
@@ -100,14 +102,14 @@ span.breadcrumb-index {
 }
 
 .breadcrumb li:not(:last-child):after {
-    border-top: 1em solid transparent;
-    border-bottom: 1em solid transparent;
+    border-top: 1.3em solid transparent;
+    border-bottom: 1.3em solid transparent;
     border-left: 1em solid var(--grey-color);
     content: "";
     position: absolute;
     top: 0;
     bottom: 0;
-    right: -.98em;
+    right: -.9em;
     z-index: 1;
 }
 
@@ -141,6 +143,46 @@ button {
     min-width: 7em;
 }
 /* end of buttons */
+/* inputs */
+.text-input {
+    background-color: var(--input-grey-color);
+    border: none;
+    outline: none;
+    padding: .5em;
+}
+.select-input select{
+    appearance: none;
+    outline: 0;
+    border: 0;
+    box-shadow: none;
+    flex: 1;
+    padding: 0 1em;
+    color: grey;
+    background-color: var(--input-grey-color);
+    cursor: pointer;
+}
+.select-input select::-ms-expand {
+    display: none;
+}
+
+.select-input {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    overflow: hidden;
+}
+.select-input::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+    background-color: var(--grey-color);
+    color: var(--dark-blue-color);
+    pointer-events: none;
+}
+/* end of inputs */
 /* form session */
 .form-session-title {
     color: var(--dark-blue-color);
@@ -178,4 +220,83 @@ button.form-session-collapse:hover {
 .form-session-content label {
     color: black;
 }
+.form-session-row p{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    column-gap: 1em;
+}
 /* end of form session */
+/* table form */
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.form-table thead {
+    background-color: var(--dark-blue-color);
+    color: white;
+}
+.form-table th, .form-table td {
+    padding: .4em;
+}
+.form-table th {
+    font-weight: normal;
+}
+.form-table tbody {
+    background-color: var(--input-grey-color);
+    color: black;
+}
+.form-table td.table-action-cell {
+    width: 20%;
+    text-align: center;
+}
+.form-table tr.form-table-empty-tr  {
+    background-color: white;
+    text-align: center;
+}
+.form-table tfoot {
+    background-color: var(--grey-color);
+    color: white;
+}
+.form-table tfoot td {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.form-table tfoot th select {
+    background-color: var(--input-grey-color);
+    color: var(--primary-color);
+    outline: none;
+    padding: 0 .5em 0 .5em;
+}
+.table-control {
+    background: transparent;
+    border: none;
+}
+.table-control:hover {
+    opacity: .5;
+}
+.table-control svg {
+    fill: white;
+}
+.table-control-current-page {
+    background-color: white;
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 0.3em 0.5em 0.3em 0.5em;
+}
+.table-control-pagination-info {
+    border-left: 1px solid var(--dark-blue-color);
+    padding-left: 0.5em;
+}
+
+.table-action-button {
+    border: none;
+    background: transparent;
+    fill: var(--dark-orange-color);
+}
+.table-action-button:hover {
+    opacity: .7;
+}
+/* end of table form */

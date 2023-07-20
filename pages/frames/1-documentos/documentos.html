@@ -23,10 +23,172 @@
                 </p>
             </div>
             <div class="form-session-row">
-                <label for="due">DUE</label>
+                <p>DUE</p>
                 <p>
-                    <input type="text" name="due" id="due">
+                    <input class="text-input" placeholder="Digite o número da DUE" type="text" name="due" id="due">
                     <button class="button-primary" id="add-due">Adicionar</button>
+                </p>
+            </div>
+            <div class="form-session-row">
+                <p>
+                    <table class="form-table">
+                        <thead>
+                             <tr>
+                                <th>DUE</th>
+                                <th></th>
+                             </tr>
+                        </thead> 
+                        <tbody>
+                            <tr>
+                                <td>22BR0000047315</td>
+                                <td class="table-action-cell">
+                                    <button class="table-action-button">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <button class="table-control" id="fast-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-current-page" id="current-page">1</span>
+                                    <button class="table-control" id="skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="fast-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 1 itens</span>
+                                </td>
+                                <th>
+                                    <select>
+                                        <option value="10">10</option>
+                                    </select>
+                                    REGISTROS POR PÁGINA
+                                </th>
+                            </tr>
+                        </tfoot>
+                     </table>
+                </p>
+            </div>
+            <div class="form-session-row">
+                <p>Qual DUE deseja utilizar para preencher os dados gerais dessa LPCO?</p>
+                <p>
+                    <div class="select-input">
+                        <select>
+                            <option>Selecione...</option>
+                        </select>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="form-session">
+        <div class="form-session-title">
+            <button class="form-session-collapse">
+                <svg viewBox="0 0 24 24" width="20" height="17" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 12h20" stroke="#FFFFFF" stroke-width="2" />
+                </svg>
+            </button>
+            <h4>Declaração Única de Exportação</h4>
+        </div>
+        <div class="form-session-content">
+            <div class="form-session-row">
+                <p>Deseja usar a CCT para preencher o formulário?</p>
+                <p>
+                    <span>
+                        <input type="radio" name="yes_cct" id="yes_cct" value="CSS">
+                        <label for="yes_cct">Sim</label>
+                    </span>
+                    <span>
+                        <input type="radio" name="no_cct" id="no_cct" value="CSS">
+                        <label for="no_cct">Não</label>
+                    </span>
+                </p>
+            </div>
+            <!-- <div class="form-session-row">
+                <p>DUE</p>
+                <p>
+                    <input class="text-input" placeholder="Digite o número da DUE" type="text" name="due" id="due">
+                    <button class="button-primary" id="add-due">Adicionar</button>
+                </p>
+            </div> -->
+            <div class="form-session-row">
+                <p>
+                    <table class="form-table">
+                        <thead>
+                             <tr>
+                                <th>DUE</th>
+                                <th></th>
+                             </tr>
+                        </thead> 
+                        <tbody>
+                            <tr class="form-table-empty-tr">
+                                <td>Nenhum item cadastrado</td>
+                                <td class="table-action-cell"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <button class="table-control" id="fast-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-current-page" id="current-page">1</span>
+                                    <button class="table-control" id="skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="fast-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 0 itens</span>
+                                </td>
+                                <th>
+                                    <select>
+                                        <option value="10">10</option>
+                                    </select>
+                                    REGISTROS POR PÁGINA
+                                </th>
+                            </tr>
+                        </tfoot>
+                     </table>
+                </p>
+            </div>
+            <div class="form-session-row">
+                <p>Qual CCT deseja utilizar para preencher os transportes dessa LPCO?</p>
+                <p>
+                    <div class="select-input">
+                        <select>
+                            <option>Selecione...</option>
+                        </select>
+                    </div>
                 </p>
             </div>
         </div>
