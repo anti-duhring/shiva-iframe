@@ -198,7 +198,7 @@ export const loadDocumentos = frameDiv => runWithLoading(() => {
         const $add_due = frameDiv.querySelector('#add-due')
         const $due_table = frameDiv.querySelector('#dues')
 
-        dueTablePubSub.subscribe((...args) => renderDues($due_table, ...args))
+        dueTablePubSub.subscribe((currentState) => renderDues($due_table, currentState))
 
         $due_true_radio.addEventListener('change', () => changeDueChecked(currentState))
         $due_false_radio.addEventListener('change', () => changeDueChecked(currentState))
@@ -210,7 +210,7 @@ export const loadDocumentos = frameDiv => runWithLoading(() => {
         const $add_cct = frameDiv.querySelector('#add-cct')
         const $cct_table = frameDiv.querySelector('#ccts')
 
-        cctTablePubSub.subscribe((...args) => renderCcts($cct_table, ...args))
+        cctTablePubSub.subscribe((currentState) => renderCcts($cct_table, currentState))
 
         $cct_true_radio.addEventListener('change', () => changeCctChecked(currentState))
         $cct_false_radio.addEventListener('change', () => changeCctChecked(currentState))

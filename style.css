@@ -228,6 +228,27 @@ button.form-session-collapse:hover {
     align-items: stretch;
     column-gap: 1em;
 }
+.form-session-row.row-direction {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    column-gap: 1em;
+}
+
+.form-session-row.row-direction p {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5em;
+}
+.form-session-row.row-direction p input {
+    min-width: auto;
+}
+.form-session-row.row-direction p button {
+    min-height: 3em;
+}
+.form-hidden {
+    display: none!important;
+}
 /* end of form session */
 /* table form */
 .form-table {
@@ -243,10 +264,14 @@ button.form-session-collapse:hover {
 }
 .form-table th {
     font-weight: normal;
+    border-right: 1px solid white;
 }
 .form-table tbody {
     background-color: var(--input-grey-color);
     color: black;
+}
+.form-table tbody td {
+    border-right: 1px solid white;
 }
 .form-table tbody tr:hover  {
     background-color: var(--dark-grey-color);
@@ -263,7 +288,7 @@ button.form-session-collapse:hover {
     background-color: var(--grey-color);
     color: white;
 }
-.form-table tfoot td {
+.form-table tfoot td .table-control-container {
     display: flex;
     flex-direction: row;
     align-items: center;

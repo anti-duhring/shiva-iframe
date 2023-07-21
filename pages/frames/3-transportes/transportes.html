@@ -1,1 +1,332 @@
-Editar arquivo pages/frames/3-transportes/transportes.html
+<main>
+    <div class="form-session">
+        <div class="form-session-title">
+            <button class="form-session-collapse">
+                <svg viewBox="0 0 24 24" width="20" height="17" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 12h20" stroke="#FFFFFF" stroke-width="2" />
+                </svg>
+            </button>
+            <h4>Dados de Transporte</h4>
+        </div>
+        <div class="form-session-content">
+            <div class="form-session-row">
+                <p>Unidade do Vigiágro*</p>
+                <p>
+                    <div class="select-input">
+                        <select id="transport-type">
+                            <option value="transport-rail">Transporte ferroviário</option>
+                            <option value="transport-road">Transporte rodoviário</option>
+                            <option value="transport-navigation-intern">Navigação interior</option>
+                        </select>
+                    </div>
+                </p>
+            </div>
+            <div class="form-session-row">
+                <p>Tipo de carregamento*</p>
+                <p>
+                    <div class="select-input">
+                        <select>
+                            <option>Selecione...</option>
+                        </select>
+                    </div>
+                </p>
+            </div>
+            <!-- Beginning transport-rail -->
+            <div class="form-session-row row-direction" data-transport="transport-rail">
+                <p>
+                    Identificação do trem
+                    <input 
+                        class="text-input" 
+                        name="id-train" 
+                        id="id-train"
+                    >
+                </p>
+                <p>
+                    Número de vagões no transporte
+                    <input 
+                        class="text-input" 
+                        name="train-cars" 
+                        id="train-cars"
+                    >
+                </p>
+                <p>
+                    Identificação do vagão
+                    <input 
+                        class="text-input" 
+                        name="id-train-car" 
+                        id="id-train-car"
+                    >
+                </p>
+                <p>
+                    Lacre
+                    <input 
+                        class="text-input" 
+                        name="seal-code" 
+                        id="seal-code"
+                    >
+                </p>
+                <p>
+                    <button class="button-primary" id="add-due">Adicionar</button>
+                </p>
+            </div>
+            <div class="form-session-row" data-transport="transport-rail">
+                <table class="form-table" id="dues">
+                    <thead>
+                            <tr>
+                            <th>Identificação do trem</th>
+                            <th>Número de vagões no transporte</th>
+                            <th>Identificação do vagão</th>
+                            <th>Lacre</th>
+                            <th></th>
+                            </tr>
+                    </thead> 
+                    <tbody>
+                        <tr class="form-table-empty-tr">
+                            <td colspan="4">Nenhum item cadastrado</td>
+                            <td class="table-action-cell"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <div class="table-control-container">
+                                    <button class="table-control" id="due-fast-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="due-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-current-page" id="due-current-page">1</span>
+                                    <button class="table-control" id="due-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="due-fast-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-pagination-info" id="due-pagination-info">1 - 1 de 1 itens</span>
+                                </div>
+                            </td>
+                            <th colspan="2">
+                                <select id="due-pagination-max">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                REGISTROS POR PÁGINA
+                            </th>
+                        </tr>
+                    </tfoot>
+                    </table>
+            </div>
+            <!-- End transport-rail -->
+            <!-- Beginning transport-road -->
+            <div class="form-session-row" data-transport="transport-road">
+                <p>Tipo de veículo*</p>
+                <p>
+                    <div class="select-input">
+                        <select>
+                            <option>Selecione...</option>
+                        </select>
+                    </div>
+                </p>
+            </div>
+            <div class="form-session-row" data-transport="transport-road">
+                <p>Placa do cavalo*</p>
+                <p>
+                   <input 
+                        class="text-input" 
+                        name="horse-plate" 
+                        id="horse-plate"
+                    />
+                </p>
+            </div>
+            <div class="form-session-row row-direction" data-transport="transport-road">
+                <p>
+                    Placa do reboque*
+                    <input 
+                        class="text-input" 
+                        name="tow-plate" 
+                        id="tow-plate"
+                    >
+                </p>
+                <p>
+                    Lacre 1*
+                    <input 
+                        class="text-input" 
+                        name="seal-1" 
+                        id="seal-1"
+                    >
+                </p>
+                <p>
+                    Lacre 2
+                    <input 
+                        class="text-input" 
+                        name="seal-2" 
+                        id="seal-2"
+                    >
+                </p>
+                <p>
+                    Lacre 3
+                    <input 
+                        class="text-input" 
+                        name="seal-3" 
+                        id="seal-3"
+                    >
+                </p>
+                <p>
+                    Lacre 4
+                    <input 
+                        class="text-input" 
+                        name="seal-4" 
+                        id="seal-4"
+                    >
+                </p>
+                <p>
+                    <button class="button-primary" id="add-due">Adicionar</button>
+                </p>
+            </div>
+            <div class="form-session-row" data-transport="transport-road">
+                <table class="form-table" id="dues">
+                    <thead>
+                            <tr>
+                            <th>Placa do reboque*</th>
+                            <th>Lacre 1*</th>
+                            <th>Lacre 2</th>
+                            <th>Lacre 3</th>
+                            <th>Lacre 4</th>
+                            <th></th>
+                            </tr>
+                    </thead> 
+                    <tbody>
+                        <tr class="form-table-empty-tr">
+                            <td colspan="5">Nenhum item cadastrado</td>
+                            <td class="table-action-cell"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <div class="table-control-container">
+                                    <button class="table-control" id="due-fast-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="due-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-current-page" id="due-current-page">1</span>
+                                    <button class="table-control" id="due-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="due-fast-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-pagination-info" id="due-pagination-info">1 - 1 de 1 itens</span>
+                                </div>
+                            </td>
+                            <th>
+                                <select id="due-pagination-max">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                REGISTROS POR PÁGINA
+                            </th>
+                        </tr>
+                    </tfoot>
+                    </table>
+            </div>
+            <!-- End transport-road -->
+            <!-- Beginning transprt-navigation-intern -->
+            <div class="form-session-row row-direction" data-transport="transport-navigation-intern">
+                <p>
+                    Identificação do veículo
+                    <input 
+                        class="text-input" 
+                        name="id-vehicle" 
+                        id="id-vehicle"
+                    >
+                </p>
+                <p>
+                    Lacre
+                    <input 
+                        class="text-input" 
+                        name="seal" 
+                        id="seal-navigation-intern"
+                    >
+                </p>
+                <p>
+                    <button class="button-primary" id="add-due">Adicionar</button>
+                </p>
+            </div>
+            <div class="form-session-row" data-transport="transport-navigation-intern">
+                <table class="form-table" id="dues">
+                    <thead>
+                            <tr>
+                            <th>Identificação do veículo</th>
+                            <th>Lacre</th>
+                            <th></th>
+                            </tr>
+                    </thead> 
+                    <tbody>
+                        <tr class="form-table-empty-tr">
+                            <td colspan="2">Nenhum item cadastrado</td>
+                            <td class="table-action-cell"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                <div class="table-control-container">
+                                    <button class="table-control" id="due-fast-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="due-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-current-page" id="due-current-page">1</span>
+                                    <button class="table-control" id="due-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="due-fast-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-pagination-info" id="due-pagination-info">1 - 1 de 1 itens</span>
+                                </div>
+                            </td>
+                            <th>
+                                <select id="due-pagination-max">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                REGISTROS POR PÁGINA
+                            </th>
+                        </tr>
+                    </tfoot>
+                    </table>
+            </div>
+            <!-- End transprt-navigation-intern -->
+        </div>
+    </div>
+</main>
