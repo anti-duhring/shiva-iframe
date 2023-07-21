@@ -87,8 +87,8 @@ const renderCcts = (table, currentState) => {
         return
     }
 
-    allCcts.forEach((due, index) => {
-        const tr = generateTr(due, () => removeCct(index, currentState))
+    allCcts.forEach((cct, index) => {
+        const tr = generateTr(cct, () => removeCct(index, currentState))
 
         newTrs.push(tr)
     })
