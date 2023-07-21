@@ -22,14 +22,14 @@
                     </span>
                 </p>
             </div>
-            <div class="form-session-row">
+            <div class="form-session-row due-row">
                 <p>DUE</p>
                 <p>
                     <input class="text-input" placeholder="Digite o número da DUE" type="text" name="due" id="due">
                     <button class="button-primary" id="add-due">Adicionar</button>
                 </p>
             </div>
-            <div class="form-session-row">
+            <div class="form-session-row due-row">
                 <p>
                     <table class="form-table" id="dues">
                         <thead>
@@ -47,31 +47,32 @@
                         <tfoot>
                             <tr>
                                 <td>
-                                    <button class="table-control" id="fast-skip-back">
+                                    <button class="table-control" id="due-fast-skip-back">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
                                         </svg>
                                     </button>
-                                    <button class="table-control" id="skip-back">
+                                    <button class="table-control" id="due-skip-back">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
                                         </svg>
                                     </button>
-                                    <span class="table-control-current-page" id="current-page">1</span>
-                                    <button class="table-control" id="skip-next">
+                                    <span class="table-control-current-page" id="due-current-page">1</span>
+                                    <button class="table-control" id="due-skip-next">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
                                         </svg>
                                     </button>
-                                    <button class="table-control" id="fast-skip-next">
+                                    <button class="table-control" id="due-fast-skip-next">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
                                         </svg>
                                     </button>
-                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 1 itens</span>
+                                    <span class="table-control-pagination-info" id="due-pagination-info">1 - 1 de 1 itens</span>
                                 </td>
                                 <th>
-                                    <select>
+                                    <select id="due-pagination-max">
+                                        <option value="5">5</option>
                                         <option value="10">10</option>
                                     </select>
                                     REGISTROS POR PÁGINA
@@ -81,7 +82,7 @@
                      </table>
                 </p>
             </div>
-            <div class="form-session-row">
+            <div class="form-session-row due-row">
                 <p>Qual DUE deseja utilizar para preencher os dados gerais dessa LPCO?</p>
                 <p>
                     <div class="select-input">
@@ -107,21 +108,28 @@
                 <p>Deseja usar a CCT para preencher o formulário?</p>
                 <p>
                     <span>
-                        <input type="radio" name="yes_cct" id="yes_cct">
+                        <input type="radio" name="use_cct" id="yes_cct" checked>
                         <label for="yes_cct">Sim</label>
                     </span>
                     <span>
-                        <input type="radio" name="no_cct" id="no_cct">
+                        <input type="radio" name="use_cct" id="no_cct">
                         <label for="no_cct">Não</label>
                     </span>
                 </p>
             </div>
-            <div class="form-session-row">
+            <div class="form-session-row cct-row">
+                <p>CCT</p>
                 <p>
-                    <table class="form-table">
+                    <input class="text-input" placeholder="Digite o número da CCT" type="text" name="cct" id="cct">
+                    <button class="button-primary" id="add-cct">Adicionar</button>
+                </p>
+            </div>
+            <div class="form-session-row cct-row">
+                <p>
+                    <table class="form-table" id="ccts">
                         <thead>
                              <tr>
-                                <th>DUE</th>
+                                <th>CCT</th>
                                 <th></th>
                              </tr>
                         </thead> 
@@ -155,10 +163,11 @@
                                             <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
                                         </svg>
                                     </button>
-                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 0 itens</span>
+                                    <span class="table-control-pagination-info">1 - 1 de 0 itens</span>
                                 </td>
                                 <th>
                                     <select>
+                                        <option value="5">5</option>
                                         <option value="10">10</option>
                                     </select>
                                     REGISTROS POR PÁGINA
@@ -168,7 +177,7 @@
                      </table>
                 </p>
             </div>
-            <div class="form-session-row">
+            <div class="form-session-row cct-row">
                 <p>Qual CCT deseja utilizar para preencher os transportes dessa LPCO?</p>
                 <p>
                     <div class="select-input">

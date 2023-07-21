@@ -3,6 +3,7 @@
     --grey-color: #aaaaaa;
     --light-grey-color: #d2d2d2;
     --input-grey-color: #e0e2e3;
+    --dark-grey-color: #d2d3d3;
     --dark-blue-color: #4b627e;
     --dark-orange-color:#db9220;
 }
@@ -246,6 +247,9 @@ button.form-session-collapse:hover {
 .form-table tbody {
     background-color: var(--input-grey-color);
     color: black;
+}
+.form-table tbody tr:hover  {
+    background-color: var(--dark-grey-color);
 }
 .form-table td.table-action-cell {
     width: 20%;
