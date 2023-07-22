@@ -341,19 +341,56 @@ button.form-session-collapse:hover {
 /* modal */
 dialog.form-modal {
     border: none;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px rgb(49, 49, 49);
     padding: 0;
     top: 5em;
     z-index: 999;
+    min-width: 30em;
 }
 dialog.form-modal .modal-title {
     background-color: var(--input-grey-color);
     margin: 0;
     padding: .5em;
+    display: flex;
+    justify-content: space-between;
+}
+dialog.form-modal .modal-title h2 {
+    padding: 0;
+    margin: 0;
+    color: black;
+}
+dialog.form-modal .modal-title button {
+    background: transparent;
+    border: none;
+}
+dialog.form-modal .modal-title button:hover {
+    opacity: .5;
 }
 dialog.form-modal .modal-content {
     padding: 1em;
     max-height: 50vh;
     overflow-y: scroll;
+}
+dialog.form-modal .modal-content-row {
+    color: var(--dark-blue-color);
+}
+dialog.form-modal .modal-content-row p input {
+    width: 90%;
+}
+dialog.form-modal .modal-footer {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.modal-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #00000091;
+    z-index: 99;
 }
 /* end of modal */

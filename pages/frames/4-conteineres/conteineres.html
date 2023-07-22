@@ -3,7 +3,7 @@
         <div class="form-session-content">
             <div class="form-session-row">
                 <p>
-                    <button class="button-primary">Adicionar novo contêiner</button>
+                    <button class="button-primary" data-event="open-modal">Adicionar novo contêiner</button>
                 </p>
             </div>
             <div class="form-session-row">
@@ -64,19 +64,25 @@
                     </table>
             </div>
         </div>
-        <dialog open class="form-modal">
-            <h2 class="modal-title">Adicionar contêiner</h2>
+        <div class="modal-overlay" data-event="close-modal"></div>
+        <dialog class="form-modal">
+            <div class="modal-title">
+                <h2>Adicionar contêiner</h2>
+                <button data-event="close-modal">
+                    <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                    </svg>
+                </button>
+            </div>
             <div class="modal-content">
                 <div class="modal-content-row">
                     <p>Número do contêiner*</p>
                     <p>
                         <input 
                             class="text-input" 
-                            placeholder="Digite o nome"
-                            value="DR. OETKER BRASIL LTDA." 
-                            type="text" 
-                            name="exp-name" 
-                            id="exp-name"
+                            required
+                            data-input
+                            data-index="0"
                         >
                     </p>
                 </div>
@@ -85,10 +91,9 @@
                     <p>
                         <input 
                             class="text-input" 
-                            placeholder="Digite o nome"
-                            type="text" 
-                            name="exp-name" 
-                            id="exp-name"
+                            required
+                            data-input
+                            data-index="1"
                         >
                     </p>
                 </div>
@@ -97,10 +102,9 @@
                     <p>
                         <input 
                             class="text-input" 
-                            placeholder="Digite o nome"
-                            type="text" 
-                            name="exp-name" 
-                            id="exp-name"
+                            required
+                            data-input
+                            data-index="2"
                         >
                     </p>
                 </div>
@@ -109,10 +113,8 @@
                     <p>
                         <input 
                             class="text-input" 
-                            placeholder="Digite o nome"
-                            type="text" 
-                            name="exp-name" 
-                            id="exp-name"
+                            data-input
+                            data-index="3"
                         >
                     </p>
                 </div>
@@ -121,17 +123,15 @@
                     <p>
                         <input 
                             class="text-input" 
-                            placeholder="Digite o nome"
-                            type="text" 
-                            name="exp-name" 
-                            id="exp-name"
+                            data-input
+                            data-index="4"
                         >
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="button-cancel">Cancelar</button>
-                <button class="button-primary">Adicionar</button>
+                <button class="button-cancel" data-event="close-modal">Cancelar</button>
+                <button class="button-primary" data-event="add-container">Adicionar</button>
             </div>
         </dialog>
     </div>
