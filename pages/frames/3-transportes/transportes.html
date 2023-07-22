@@ -34,11 +34,15 @@
             <!-- Beginning transport-rail -->
             <div class="form-session-row row-direction" data-transport="transport-rail">
                 <p>
-                    Identificação do trem
+                    Identificação do trem*
                     <input 
                         class="text-input" 
                         name="id-train" 
                         id="id-train"
+                        required
+                        data-input
+                        data-index="0"
+                        data-transport="transport-rail"
                     >
                 </p>
                 <p>
@@ -47,6 +51,9 @@
                         class="text-input" 
                         name="train-cars" 
                         id="train-cars"
+                        data-input
+                        data-index="1"
+                        data-transport="transport-rail"
                     >
                 </p>
                 <p>
@@ -55,6 +62,9 @@
                         class="text-input" 
                         name="id-train-car" 
                         id="id-train-car"
+                        data-input
+                        data-index="2"
+                        data-transport="transport-rail"
                     >
                 </p>
                 <p>
@@ -63,14 +73,17 @@
                         class="text-input" 
                         name="seal-code" 
                         id="seal-code"
+                        data-input
+                        data-index="3"
+                        data-transport="transport-rail"
                     >
                 </p>
                 <p>
-                    <button class="button-primary" id="add-due">Adicionar</button>
+                    <button class="button-primary" data-event="add-transport" data-transport="transport-rail">Adicionar</button>
                 </p>
             </div>
             <div class="form-session-row" data-transport="transport-rail">
-                <table class="form-table" id="dues">
+                <table class="form-table" data-transport="transport-rail">
                     <thead>
                             <tr>
                             <th>Identificação do trem</th>
@@ -90,32 +103,32 @@
                         <tr>
                             <td colspan="3">
                                 <div class="table-control-container">
-                                    <button class="table-control" id="due-fast-skip-back">
+                                    <button class="table-control" id="fast-skip-back">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
                                         </svg>
                                     </button>
-                                    <button class="table-control" id="due-skip-back">
+                                    <button class="table-control" id="skip-back">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
                                         </svg>
                                     </button>
-                                    <span class="table-control-current-page" id="due-current-page">1</span>
-                                    <button class="table-control" id="due-skip-next">
+                                    <span class="table-control-current-page" id="current-page">1</span>
+                                    <button class="table-control" id="skip-next">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
                                         </svg>
                                     </button>
-                                    <button class="table-control" id="due-fast-skip-next">
+                                    <button class="table-control" id="fast-skip-next">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
                                         </svg>
                                     </button>
-                                    <span class="table-control-pagination-info" id="due-pagination-info">1 - 1 de 1 itens</span>
+                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 1 itens</span>
                                 </div>
                             </td>
                             <th colspan="2">
-                                <select id="due-pagination-max">
+                                <select id="pagination-max">
                                     <option value="5">5</option>
                                     <option value="10">10</option>
                                 </select>
@@ -154,6 +167,10 @@
                         class="text-input" 
                         name="tow-plate" 
                         id="tow-plate"
+                        required
+                        data-input
+                        data-index="0"
+                        data-transport="transport-road"
                     >
                 </p>
                 <p>
@@ -162,6 +179,10 @@
                         class="text-input" 
                         name="seal-1" 
                         id="seal-1"
+                        required
+                        data-input
+                        data-index="1"
+                        data-transport="transport-road"
                     >
                 </p>
                 <p>
@@ -170,6 +191,9 @@
                         class="text-input" 
                         name="seal-2" 
                         id="seal-2"
+                        data-input
+                        data-index="3"
+                        data-transport="transport-road"
                     >
                 </p>
                 <p>
@@ -178,6 +202,9 @@
                         class="text-input" 
                         name="seal-3" 
                         id="seal-3"
+                        data-input
+                        data-index="4"
+                        data-transport="transport-road"
                     >
                 </p>
                 <p>
@@ -186,14 +213,17 @@
                         class="text-input" 
                         name="seal-4" 
                         id="seal-4"
+                        data-input
+                        data-index="5"
+                        data-transport="transport-road"
                     >
                 </p>
                 <p>
-                    <button class="button-primary" id="add-due">Adicionar</button>
+                    <button class="button-primary" data-event="add-transport" data-transport="transport-road">Adicionar</button>
                 </p>
             </div>
             <div class="form-session-row" data-transport="transport-road">
-                <table class="form-table" id="dues">
+                <table class="form-table" data-transport="transport-road">
                     <thead>
                             <tr>
                             <th>Placa do reboque*</th>
@@ -214,32 +244,32 @@
                         <tr>
                             <td colspan="5">
                                 <div class="table-control-container">
-                                    <button class="table-control" id="due-fast-skip-back">
+                                    <button class="table-control" id="fast-skip-back">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
                                         </svg>
                                     </button>
-                                    <button class="table-control" id="due-skip-back">
+                                    <button class="table-control" id="skip-back">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
                                         </svg>
                                     </button>
-                                    <span class="table-control-current-page" id="due-current-page">1</span>
-                                    <button class="table-control" id="due-skip-next">
+                                    <span class="table-control-current-page" id="current-page">1</span>
+                                    <button class="table-control" id="skip-next">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
                                         </svg>
                                     </button>
-                                    <button class="table-control" id="due-fast-skip-next">
+                                    <button class="table-control" id="fast-skip-next">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
                                         </svg>
                                     </button>
-                                    <span class="table-control-pagination-info" id="due-pagination-info">1 - 1 de 1 itens</span>
+                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 1 itens</span>
                                 </div>
                             </td>
                             <th>
-                                <select id="due-pagination-max">
+                                <select id="pagination-max">
                                     <option value="5">5</option>
                                     <option value="10">10</option>
                                 </select>
@@ -253,11 +283,15 @@
             <!-- Beginning transprt-navigation-intern -->
             <div class="form-session-row row-direction" data-transport="transport-navigation-intern">
                 <p>
-                    Identificação do veículo
+                    Identificação do veículo*
                     <input 
                         class="text-input" 
                         name="id-vehicle" 
                         id="id-vehicle"
+                        required
+                        data-input
+                        data-index="0"
+                        data-transport="transport-navigation-intern"
                     >
                 </p>
                 <p>
@@ -266,14 +300,17 @@
                         class="text-input" 
                         name="seal" 
                         id="seal-navigation-intern"
+                        data-input
+                        data-index="1"
+                        data-transport="transport-navigation-intern"
                     >
                 </p>
                 <p>
-                    <button class="button-primary" id="add-due">Adicionar</button>
+                    <button class="button-primary" data-event="add-transport" data-transport="transport-navigation-intern">Adicionar</button>
                 </p>
             </div>
             <div class="form-session-row" data-transport="transport-navigation-intern">
-                <table class="form-table" id="dues">
+                <table class="form-table" data-transport="transport-navigation-intern">
                     <thead>
                             <tr>
                             <th>Identificação do veículo</th>
@@ -291,32 +328,32 @@
                         <tr>
                             <td colspan="2">
                                 <div class="table-control-container">
-                                    <button class="table-control" id="due-fast-skip-back">
+                                    <button class="table-control" id="fast-skip-back">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
                                         </svg>
                                     </button>
-                                    <button class="table-control" id="due-skip-back">
+                                    <button class="table-control" id="skip-back">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
                                         </svg>
                                     </button>
-                                    <span class="table-control-current-page" id="due-current-page">1</span>
-                                    <button class="table-control" id="due-skip-next">
+                                    <span class="table-control-current-page" id="current-page">1</span>
+                                    <button class="table-control" id="skip-next">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
                                         </svg>
                                     </button>
-                                    <button class="table-control" id="due-fast-skip-next">
+                                    <button class="table-control" id="fast-skip-next">
                                         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
                                         </svg>
                                     </button>
-                                    <span class="table-control-pagination-info" id="due-pagination-info">1 - 1 de 1 itens</span>
+                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 1 itens</span>
                                 </div>
                             </td>
                             <th>
-                                <select id="due-pagination-max">
+                                <select id="pagination-max">
                                     <option value="5">5</option>
                                     <option value="10">10</option>
                                 </select>

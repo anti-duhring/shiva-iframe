@@ -147,10 +147,13 @@ button {
 /* inputs */
 .text-input {
     background-color: var(--input-grey-color);
-    border: none;
+    border: 1px solid var(--input-grey-color);
     outline: none;
-    padding: 1em;
+    padding: .9em;
     min-width: 17em;
+}
+.form-input-error {
+    border-color: red;
 }
 .select-input select{
     appearance: none;
