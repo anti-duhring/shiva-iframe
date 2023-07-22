@@ -1,1 +1,138 @@
-Editar arquivo pages/frames/4-conteineres/conteineres.html
+<main>
+    <div class="form-session">
+        <div class="form-session-content">
+            <div class="form-session-row">
+                <p>
+                    <button class="button-primary">Adicionar novo contêiner</button>
+                </p>
+            </div>
+            <div class="form-session-row">
+                <table class="form-table" data-transport="transport-road">
+                    <thead>
+                            <tr>
+                            <th>Número do contêiner</th>
+                            <th>Número do Lacre 1</th>
+                            <th>Número do Lacre 2</th>
+                            <th>Número do Lacre 3</th>
+                            <th>Número do Lacre 4</th>
+                            <th></th>
+                            </tr>
+                    </thead> 
+                    <tbody>
+                        <tr class="form-table-empty-tr">
+                            <td colspan="5">Nenhum item cadastrado</td>
+                            <td class="table-action-cell"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <div class="table-control-container">
+                                    <button class="table-control" id="fast-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-current-page" id="current-page">1</span>
+                                    <button class="table-control" id="skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="fast-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 1 itens</span>
+                                </div>
+                            </td>
+                            <th>
+                                <select id="pagination-max">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                REGISTROS POR PÁGINA
+                            </th>
+                        </tr>
+                    </tfoot>
+                    </table>
+            </div>
+        </div>
+        <dialog open class="form-modal">
+            <h2 class="modal-title">Adicionar contêiner</h2>
+            <div class="modal-content">
+                <div class="modal-content-row">
+                    <p>Número do contêiner*</p>
+                    <p>
+                        <input 
+                            class="text-input" 
+                            placeholder="Digite o nome"
+                            value="DR. OETKER BRASIL LTDA." 
+                            type="text" 
+                            name="exp-name" 
+                            id="exp-name"
+                        >
+                    </p>
+                </div>
+                <div class="modal-content-row">
+                    <p>Número do Lacre 1*</p>
+                    <p>
+                        <input 
+                            class="text-input" 
+                            placeholder="Digite o nome"
+                            type="text" 
+                            name="exp-name" 
+                            id="exp-name"
+                        >
+                    </p>
+                </div>
+                <div class="modal-content-row">
+                    <p>Número do Lacre 2</p>
+                    <p>
+                        <input 
+                            class="text-input" 
+                            placeholder="Digite o nome"
+                            type="text" 
+                            name="exp-name" 
+                            id="exp-name"
+                        >
+                    </p>
+                </div>
+                <div class="modal-content-row">
+                    <p>Número do Lacre 3</p>
+                    <p>
+                        <input 
+                            class="text-input" 
+                            placeholder="Digite o nome"
+                            type="text" 
+                            name="exp-name" 
+                            id="exp-name"
+                        >
+                    </p>
+                </div>
+                <div class="modal-content-row">
+                    <p>Número do Lacre 4</p>
+                    <p>
+                        <input 
+                            class="text-input" 
+                            placeholder="Digite o nome"
+                            type="text" 
+                            name="exp-name" 
+                            id="exp-name"
+                        >
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button-cancel">Cancelar</button>
+                <button class="button-primary">Adicionar</button>
+            </div>
+        </dialog>
+    </div>
+</main>

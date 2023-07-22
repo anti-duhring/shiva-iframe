@@ -162,9 +162,14 @@ button {
     box-shadow: none;
     flex: 1;
     padding: 0 1em;
-    color: grey;
     background-color: var(--input-grey-color);
     cursor: pointer;
+}
+.select-input select option {
+    color: black;
+}
+.select-input select:invalid {
+    color: grey;
 }
 .select-input select::-ms-expand {
     display: none;
@@ -333,3 +338,22 @@ button.form-session-collapse:hover {
     opacity: .7;
 }
 /* end of table form */
+/* modal */
+dialog.form-modal {
+    border: none;
+    box-shadow: 0 0 10px black;
+    padding: 0;
+    top: 5em;
+    z-index: 999;
+}
+dialog.form-modal .modal-title {
+    background-color: var(--input-grey-color);
+    margin: 0;
+    padding: .5em;
+}
+dialog.form-modal .modal-content {
+    padding: 1em;
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+/* end of modal */
