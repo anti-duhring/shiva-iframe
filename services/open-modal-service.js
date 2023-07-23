@@ -1,4 +1,4 @@
-const closeModal = () => {
+export const closeModal = () => {
     const $modal = document.querySelector('dialog.form-modal');
     const $overlay = document.querySelector('div.modal-overlay');
     $modal.removeAttribute('open');

@@ -377,6 +377,17 @@ dialog.form-modal .modal-content-row {
 dialog.form-modal .modal-content-row p input {
     width: 90%;
 }
+dialog.form-modal .modal-content-row .select-input {
+    width: 97%;
+}
+dialog.form-modal p.modal-checkbox-field span {
+    display: flex;
+}
+
+dialog.form-modal p.modal-checkbox-field {
+    display: flex;
+    column-gap: 2em;
+}
 dialog.form-modal .modal-footer {
     padding: 1em;
     display: flex;

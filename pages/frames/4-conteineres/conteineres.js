@@ -1,6 +1,6 @@
 import { renderTable } from '../../../services/form-table-service'
 import { runWithLoading } from '../../../services/loading-service'
-import { openAndCloseModal } from '../../../services/open-modal-service'
+import { closeModal, openAndCloseModal } from '../../../services/open-modal-service'
 import { factoryPubSub } from '../../../services/pub-sub-service'
 import { frameLoad } from '../../../services/requests-service'
 
@@ -39,6 +39,8 @@ const onAddItem = (containersState) => {
 
     containersState.data.push(data.map(item => item.value))
     renderTablePubSub.notify(containersState.data)
+
+    closeModal()
 }
 
 export const loadConteineres = (frameDiv, currentState) => runWithLoading(() => {

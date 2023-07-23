@@ -1,1 +1,139 @@
-Editar arquivo pages/frames/5-solicitacoes/solicitacoes.html
+<main>
+    <div class="form-session">
+        <div class="form-session-content">
+            <div class="form-session-row">
+                <p>
+                    <button class="button-primary" data-event="open-modal">Incluir nova solicitação de certificado</button>
+                </p>
+            </div>
+            <div class="form-session-row">
+                <table class="form-table" data-transport="transport-road">
+                    <thead>
+                            <tr>
+                            <th>Solicitação</th>
+                            <th>Produto</th>
+                            <th>Destinatários</th>
+                            <th>Origem</th>
+                            <th></th>
+                            </tr>
+                    </thead> 
+                    <tbody>
+                        <tr class="form-table-empty-tr">
+                            <td colspan="4">Nenhum item cadastrado</td>
+                            <td class="table-action-cell"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <div class="table-control-container">
+                                    <button class="table-control" id="fast-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-current-page" id="current-page">1</span>
+                                    <button class="table-control" id="skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="fast-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 1 itens</span>
+                                </div>
+                            </td>
+                            <th>
+                                <select id="pagination-max">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                REGISTROS POR PÁGINA
+                            </th>
+                        </tr>
+                    </tfoot>
+                    </table>
+            </div>
+        </div>
+        <div class="modal-overlay" data-event="close-modal"></div>
+        <dialog open class="form-modal">
+            <div class="modal-title">
+                <h2>Adicionar contêiner</h2>
+                <button data-event="close-modal">
+                    <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-content">
+                <!-- Begin step 1 -->
+                <h3>1. País de destino</h3>
+                <div class="modal-content-row">
+                    <p>País de destino*</p>
+                    <div class="select-input">
+                        <select required>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="brasil">Brasil</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-content-row">
+                    <p>País de trânsito</p>
+                    <div class="select-input">
+                        <select required>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="eua">EUA</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- End step 1 -->
+                <!-- Begin step 2 -->
+                <h3>1. Destinatário</h3>
+                <div class="modal-content-row">
+                    <p>O destinatário é o importador?</p>
+                    <p class="modal-checkbox-field">
+                        <span>
+                            <input type="radio" id="yes-dest-is-exporter" checked>
+                            <label for="yes-dest-is-exporter">Sim</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="no-dest-is-exporter">
+                            <label for="no-dest-is-exporter">Não</label>
+                        </span>
+                    </p>
+                </div>
+                <div class="modal-content-row">
+                    <p>Nome do destinatário</p>
+                    <div class="select-input">
+                        <select required>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="distribuidora-foo-bar">DISTRIBUIDORA FOO BAR</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-content-row">
+                    <p>Endereço do destinatário*</p>
+                    <div class="select-input">
+                        <select required>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="address-foo-bar">ENDEREÇO FOO BAR</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- End step 2 -->
+            </div>
+            <div class="modal-footer">
+                <button class="button-cancel" data-event="close-modal">Cancelar</button>
+                <button class="button-primary" data-event="add-container">Adicionar</button>
+            </div>
+        </dialog>
+    </div>
+</main>
