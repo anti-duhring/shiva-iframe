@@ -6,12 +6,12 @@ import { frameLoad } from '../../../services/requests-service'
 
 const renderTablePubSub = factoryPubSub()
 
-const onRemoveItem = (index, currentState) => {
-    currentState.data.splice(index, 1)
-    renderTablePubSub.notify(currentState.data)
+const onRemoveItem = (index, containersState) => {
+    containersState.data.splice(index, 1)
+    renderTablePubSub.notify(containersState.data)
 }
 
-const onAddItem = (currentState) => {
+const onAddItem = (containersState) => {
     const $data_inputs = document.querySelectorAll(`[data-input]`)
 
     const data = Array.from($data_inputs)
@@ -37,27 +37,27 @@ const onAddItem = (currentState) => {
         item.element.classList.remove('form-input-error')
     })
 
-    currentState.data.push(data.map(item => item.value))
-    renderTablePubSub.notify(currentState.data)
+    containersState.data.push(data.map(item => item.value))
+    renderTablePubSub.notify(containersState.data)
 }
 
-export const loadConteineres = frameDiv => runWithLoading(() => {
+export const loadConteineres = (frameDiv, currentState) => runWithLoading(() => {
     frameLoad(null, 'pages/frames/4-conteineres/conteineres.html', frameDiv, () => {
-        const currentState = {
+        currentState.CONTEINERES = {
             data: []
         }
+
+        const containersState = currentState.CONTEINERES
+        const $open_modal_container = document.querySelector('[data-event="open-modal"]')
+        const $add_container_buttons = document.querySelectorAll('[data-event="add-container"]')
 
         // Subscrição para quando o estado for alterado, o estado atualizado será renderizado na tabela
         renderTablePubSub.subscribe(data => {
             const $table = document.querySelector(`table`)
-            renderTable(data, $table, (index) => onRemoveItem(index, currentState))
+            renderTable(data, $table, (index) => onRemoveItem(index, containersState))
         })
-
-        const $open_modal_container = document.querySelector('[data-event="open-modal"]')
         $open_modal_container.addEventListener('click', openAndCloseModal)
-
-        const $add_container_buttons = document.querySelectorAll('[data-event="add-container"]')
-        $add_container_buttons.forEach(element => element.addEventListener('click', () => onAddItem(currentState)))
+        $add_container_buttons.forEach(element => element.addEventListener('click', () => onAddItem(containersState)))
         
     })
 }, 'Carregando aba "Conteineres"...')

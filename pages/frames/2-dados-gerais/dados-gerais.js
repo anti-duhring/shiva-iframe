@@ -1,26 +1,29 @@
+import { collapseForm } from '../../../services/collapse-form-service'
 import { runWithLoading } from '../../../services/loading-service'
 import { frameLoad } from '../../../services/requests-service'
 
-const collapseForm = (e) => {
-    const $form_session = e.target.closest('.form-session')
-    const $form_session_content = $form_session.querySelector('.form-session-content')
+const onInputChange = (e, generalDataState) => {
+    const { value } = e.target
+    const property = e.target.getAttribute('data-property')
 
-    const expandIcon = '<path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>'
-    const collapseIcon = '<path d="M2 12h20" stroke="#FFFFFF" stroke-width="2" />'
-
-    if($form_session_content.style.display === 'none') {
-        $form_session_content.style.display = 'block'
-        e.target.innerHTML = collapseIcon
-    } else {
-        $form_session_content.style.display = 'none'
-        e.target.innerHTML = expandIcon
-    }
+    generalDataState[property] = value
 }
 
-export const loadDadosGerais = frameDiv => runWithLoading(() => {
+export const loadDadosGerais = (frameDiv, currentState) => runWithLoading(() => {
     frameLoad(null, 'pages/frames/2-dados-gerais/dados-gerais.html', frameDiv, () => {
-        const $collapse_buttons = frameDiv.querySelectorAll('.form-session-collapse')
+        currentState.DADOSGERAIS = {
+            vigiagro: null,
+            exporterName: null,
+            exporterAddress: null
+        }
+
+        const generalDataState = currentState.DOCUMENTOS
+
+        const $collapse_buttons = document.querySelectorAll('.form-session-collapse')
+        const $data_inputs = document.querySelectorAll('[data-input]')
 
         $collapse_buttons.forEach(el => el.addEventListener('click', collapseForm))
+        $data_inputs.forEach(el => el.addEventListener('input', e => onInputChange(e, generalDataState)))
+
     })
 }, 'Carregando aba "Dados Gerais"...')

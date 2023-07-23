@@ -13,7 +13,7 @@
                 <p>Unidade do Vigiágro*</p>
                 <p>
                     <div class="select-input">
-                        <select>
+                        <select data-select required data-event="select-vigiagro">
                             <option disabled selected value="">Selecione...</option>
                         </select>
                     </div>
@@ -25,10 +25,11 @@
                     <input 
                         class="text-input" 
                         placeholder="Digite o nome"
-                        value="DR. OETKER BRASIL LTDA." 
                         type="text" 
                         name="exp-name" 
                         id="exp-name"
+                        data-input
+                        data-property="exporterName"
                     >
                 </p>
             </div>
@@ -39,6 +40,8 @@
                         class="text-input" 
                         name="exp-address" 
                         id="exp-address"
+                        data-input
+                        data-property="exporterAddress"
                     ></textarea>
                 </p>
             </div>

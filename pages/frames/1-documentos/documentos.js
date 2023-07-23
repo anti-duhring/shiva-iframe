@@ -1,213 +1,137 @@
 import { collapseForm } from '../../../services/collapse-form-service'
+import { renderTable } from '../../../services/form-table-service'
 import { runWithLoading } from '../../../services/loading-service'
 import { factoryPubSub } from '../../../services/pub-sub-service'
 import { frameLoad } from '../../../services/requests-service'
 
 const formDisablePubSub = factoryPubSub()
-const dueTablePubSub = factoryPubSub()
-const cctTablePubSub = factoryPubSub()
+const renderTablePubSub = factoryPubSub()
 
-const changeDueChecked = (currentState) => {
-    currentState.dueIsSelected = !currentState.dueIsSelected
+const changeFormDisable = (e, documentsState) => {
+    const documentType = e.target.getAttribute('data-document-type')
+    const documentTypeIsEnabled = JSON.parse(e.target.getAttribute('data-document-type-enable'))
 
-    formDisablePubSub.notify(currentState)
-}
+    documentsState[`${documentType}IsSelected`] = documentTypeIsEnabled
 
-const addDue = (input, currentState) => {
-    const value = input.value
-
-    if(!value) return 
-
-    currentState.allDues.push(value)
-    input.value = ''
-
-    dueTablePubSub.notify(currentState)
-}
-
-const removeDue = (index, currentState) => {
-    currentState.allDues.splice(index, 1)
-
-    dueTablePubSub.notify(currentState)
-}
-
-const renderDues = (table, currentState) => {
-    const { allDues } = currentState
-    const $table_body = table.querySelector('tbody')
-    const newTrs = []
-
-    if(!allDues.length) {
-        $table_body.innerHTML = ''
-        $table_body.appendChild(generateEmptyTr())
-        
-        return
-    }
-
-    allDues.forEach((due, index) => {
-        const tr = generateTr(due, () => removeDue(index, currentState))
-
-        newTrs.push(tr)
-    })
-
-    $table_body.innerHTML = ''
-    newTrs.forEach(tr => $table_body.appendChild(tr))
-}
-
-const changeCctChecked = (currentState) => {
-    currentState.cctIsSelected = !currentState.cctIsSelected
-
-    formDisablePubSub.notify(currentState)
-}
-
-
-const addCct = (input, currentState) => {
-    const value = input.value
-
-    if(!value) return 
-
-    currentState.allCcts.push(value)
-    input.value = ''
-
-    cctTablePubSub.notify(currentState)
-}
-
-const removeCct = (index, currentState) => {
-    currentState.allCcts.splice(index, 1)
-
-    cctTablePubSub.notify(currentState)
-}
-
-const renderCcts = (table, currentState) => {
-    const { allCcts } = currentState
-    const $table_body = table.querySelector('tbody')
-    const newTrs = []
-
-    if(!allCcts.length) {
-        $table_body.innerHTML = ''
-        $table_body.appendChild(generateEmptyTr())
-        
-        return
-    }
-
-    allCcts.forEach((cct, index) => {
-        const tr = generateTr(cct, () => removeCct(index, currentState))
-
-        newTrs.push(tr)
-    })
-
-    $table_body.innerHTML = ''
-    newTrs.forEach(tr => $table_body.appendChild(tr))
-}
-
-const generateTr = (content, removeFunction) => {
-    const $tr = document.createElement('tr')
-    const $td = document.createElement('td')
-    const $td_action_buttons = document.createElement('td')
-    const $delete_action_button = document.createElement('button')
-
-    $td.textContent = content
-    $tr.appendChild($td)
-
-    $delete_action_button.classList.add('table-action-button')
-    $delete_action_button.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>`
-    $td_action_buttons.classList.add('table-action-cell')
-    $td_action_buttons.appendChild($delete_action_button)
-
-    $delete_action_button.addEventListener('click', removeFunction)
-
-    $tr.appendChild($td_action_buttons)
-
-    return $tr
-}
-
-const generateEmptyTr = () => {
-    const $empty_tr = document.createElement('tr')
-    const $empty_td = document.createElement('td')
-    const $td_action_buttons = document.createElement('td')
-
-    $empty_td.textContent = 'Nenhum item cadastrado'
-    $td_action_buttons.classList.add('table-action-cell')
-    $empty_tr.classList.add('form-table-empty-tr')
-
-    $empty_tr.appendChild($empty_td)
-    $empty_tr.appendChild($td_action_buttons)
-    
-    return $empty_tr
-}
-
-const changeFormDisable = (currentState) => {
-
-    if(currentState.dueIsSelected) {
+    if(documentsState.dueIsSelected) {
         document.querySelectorAll('input[name="use_cct"]').forEach(el => el.disabled = false)
         document.querySelectorAll('.due-row').forEach(el => el.style.display = 'block')
     }
-    if(!currentState.dueIsSelected) {
+    if(!documentsState.dueIsSelected) {
         document.querySelectorAll('.due-row').forEach(el => el.style.display = 'none')
         document.querySelectorAll('input[name="use_cct"]').forEach(el => el.disabled = true)
         document.querySelector('#no_cct').checked = true
-        currentState.cctIsSelected = false
+        documentsState.cctIsSelected = false
     }
 
-    if(currentState.cctIsSelected) {
+    if(documentsState.cctIsSelected) {
         document.querySelectorAll('.cct-row').forEach(el => el.style.display = 'block')
     }
-    if(!currentState.cctIsSelected) {
+    if(!documentsState.cctIsSelected) {
         document.querySelectorAll('.cct-row').forEach(el => el.style.display = 'none')
     }
 
 }
 
-const changeFooterButtonsDisable = (currentState) => {
-    const $next_button = document.querySelector('#proximo')
+const onAddItem = (e, documentsState) => {
+    const documentType = e.target.getAttribute('data-document-type')
+    const $data_inputs = document.querySelectorAll(`[data-document-type="${documentType}"][data-input]`)
 
-    if((currentState.dueIsSelected && !currentState.allDues.length) || (currentState.cctIsSelected && !currentState.allCcts.length)) {
-        $next_button.disabled = true
+    const data = Array.from($data_inputs)
+    .map(input => ({ 
+        name: input.getAttribute('name'), 
+        value: input.value, 
+        isRequired: input.hasAttribute('required'), 
+        index: input.getAttribute('data-index'),
+        element: input
+    })).sort((a, b) => a.index - b.index)
 
-    }
+    if(data.some(item => item.isRequired && !item.value)) {
+        data.forEach(item => {
+            if(!item.isRequired) return 
 
+            item.value ? item.element.classList.remove('form-input-error') : item.element.classList.add('form-input-error')
+        })
+        return
+    } 
+
+    data.forEach(item => {
+        item.element.value = ''
+        item.element.classList.remove('form-input-error')
+    })
+
+    documentsState[documentType].push(data.map(item => item.value))
+    renderTablePubSub.notify(documentType, documentsState[documentType])
 }
 
+const onRemoveItem = (index, documentsState, documentType) => {
+    documentsState[documentType].splice(index, 1)
 
+    renderTablePubSub.notify(documentType, documentsState[documentType])
+}
 
-export const loadDocumentos = frameDiv => runWithLoading(() => {
+const renderSelectOptions = (documentType, data) => {
+    const $select = document.querySelector(`[data-document-type="${documentType}"][data-select]`)
+
+    const $empty_option = document.createElement('option')
+    $empty_option.value = ''
+    $empty_option.innerText = 'Selecione...'
+    $empty_option.disabled = true
+    $empty_option.selected = Boolean($select.value === '' || ($select.value !== '' && !data.length))
+    $select.innerHTML = ''
+    $select.appendChild($empty_option)
+
+    data.forEach(item => {
+        const $option = document.createElement('option')
+        $option.value = item
+        $option.innerText = item
+        $select.appendChild($option)
+    })
+}
+
+const selectDocumentToLPCO = (e, documentsState) => {
+    const documentType = e.target.getAttribute('data-document-type')
+    const $select = document.querySelector(`[data-document-type="${documentType}"][data-select]`)
+    const documentToLPCO = $select.value
+
+    documentsState[`${documentType}SelectedToLPCO`] = documentToLPCO || null
+}
+
+export const loadDocumentos = (frameDiv, currentState) => runWithLoading(() => {
     frameLoad(null, 'pages/frames/1-documentos/documentos.html', frameDiv, () => {
-
-        const currentState = {
+        currentState.DOCUMENTOS = {
             dueIsSelected: true,
-            allDues: [],
             cctIsSelected: true,
-            allCcts: []
+            dueSelectedToLPCO: null,
+            cctSelectedToLPCO: null,
+            due: [],
+            cct: [],
         }
 
-        const $due_true_radio = frameDiv.querySelector('#yes_due')
-        const $due_false_radio = frameDiv.querySelector('#no_due')
-        const $due_number = frameDiv.querySelector('#due')
-        const $add_due = frameDiv.querySelector('#add-due')
-        const $due_table = frameDiv.querySelector('#dues')
+        const documentsState = currentState.DOCUMENTOS
+        const $change_form_disable_radios = document.querySelectorAll('[data-event="change-form-disable"]')
+        const $collapse_buttons = document.querySelectorAll('.form-session-collapse')
+        const $add_document_buttons = document.querySelectorAll('[data-event="add-document"]')
+        const $choose_document = document.querySelectorAll('[data-event="select-document"]')
 
-        dueTablePubSub.subscribe((currentState) => renderDues($due_table, currentState))
-
-        $due_true_radio.addEventListener('change', () => changeDueChecked(currentState))
-        $due_false_radio.addEventListener('change', () => changeDueChecked(currentState))
-        $add_due.addEventListener('click', () => addDue($due_number, currentState))
-
-        const $cct_true_radio = frameDiv.querySelector('#yes_cct')
-        const $cct_false_radio = frameDiv.querySelector('#no_cct')
-        const $cct_number = frameDiv.querySelector('#cct')
-        const $add_cct = frameDiv.querySelector('#add-cct')
-        const $cct_table = frameDiv.querySelector('#ccts')
-
-        cctTablePubSub.subscribe((currentState) => renderCcts($cct_table, currentState))
-
-        $cct_true_radio.addEventListener('change', () => changeCctChecked(currentState))
-        $cct_false_radio.addEventListener('change', () => changeCctChecked(currentState))
-
-        $add_cct.addEventListener('click', () => addCct($cct_number, currentState))
-
-        formDisablePubSub.subscribe(changeFormDisable)
-        formDisablePubSub.subscribe(changeFooterButtonsDisable)
-
-        const $collapse_buttons = frameDiv.querySelectorAll('.form-session-collapse')
-
+        $change_form_disable_radios.forEach(el => el.addEventListener('change', (e) => formDisablePubSub.notify(e, documentsState)))
         $collapse_buttons.forEach(el => el.addEventListener('click', collapseForm))
+        $add_document_buttons.forEach(el => el.addEventListener('click', (e) => onAddItem(e, documentsState)))
+        $choose_document.forEach(el => el.addEventListener('change', (e) => selectDocumentToLPCO(e, documentsState)))
+        
+        // Subscrição para quando os campos "deseja usar DUE" e "deseja usar CCT" forem alterados, os formulários que serão exibidos também serão
+        formDisablePubSub.subscribe(changeFormDisable)
+        // Subscrição para quando o estado for alterado, o estado atualizado será renderizado na tabela
+        renderTablePubSub.subscribe((documentType, data) => {
+            const $table = document.querySelector(`table[data-document-type="${documentType}"]`)
+            
+            renderTable(data, $table, (index) => onRemoveItem(index, documentsState, documentType))
+        })
+        // Subscrição para quando documentos forem adicionados na tabela, o select correspondente seja atualizado
+        renderTablePubSub.subscribe(renderSelectOptions)
+        // Subscrição para quando documentos forem removidos da tabela, caso o select correspondente tenha selecionado um desses documentos removidos, ele irá atualizar o valor
+        renderTablePubSub.subscribe(() => $choose_document.forEach(el => selectDocumentToLPCO({ target: el }, documentsState)))
+
+
     })
 }, 'Carregando aba "Documentos"...')

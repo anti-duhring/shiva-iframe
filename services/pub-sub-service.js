@@ -1,17 +1,17 @@
 export const factoryPubSub = () => {
     const subscribers = new Map();
 
-    const subscribe = (callback, name) => {
-        const id = Symbol.for(name)
+    const subscribe = (callback) => {
+        const id = Symbol.for(callback)
 
         if(!subscribers.has(id)) {
             subscribers.set(id, callback)
         }
     }
 
-    const unsubscribe = (name) => {
-        const id = Symbol.for(name)
-
+    const unsubscribe = (callback) => {
+        const id = Symbol.for(callback)
+        
         subscribers.delete(id)
     }
 

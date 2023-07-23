@@ -11,6 +11,12 @@ import { loadRequisitos } from '../frames/6-requisitos/requisitos'
 
 export const loadLayout = () => runWithLoading(() => {
     frameLoad(null, 'pages/layout/layout.html', document.getElementById('app'), () => {
+        const currentState = {
+            DOCUMENTOS: {},
+            DADOSGERAIS: {},
+            TRANSPORTES: {},
+            CONTEINERES: {},
+        }
 
         const frames = {
             DOCUMENTOS: { index: 0, el: document.getElementById('documentos'), fn: loadDocumentos, path: '/documentos' },
@@ -33,7 +39,7 @@ export const loadLayout = () => runWithLoading(() => {
         const proximo = document.getElementById('proximo')
 
         const tabSelect = frame => {
-            frame.fn(document.getElementById('frame'))
+            frame.fn(document.getElementById('frame'), currentState)
             for (const tab of tabs) {
                 if (tab === frame.el) {
                     tab.classList.add('active')

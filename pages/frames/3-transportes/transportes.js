@@ -14,19 +14,19 @@ const renderFormFromTransportType = (transportType) => {
     elementsFromThisTransportType.forEach(element => element.classList.remove('form-hidden'))
 }
 
-const onChangeTransportType = (e, currentState) => {
-    currentState.transportType = e.target.value
-    currentState.data = []
+const onChangeTransportType = (e, transportState) => {
+    transportState.transportType = e.target.value
+    transportState.data = []
 
-    renderTablePubSub.notify(currentState.transportType, currentState.data)
+    renderTablePubSub.notify(transportState.transportType, transportState.data)
 }
 
-const onRemoveItem = (index, currentState) => {
-    currentState.data.splice(index, 1)
-    renderTablePubSub.notify(currentState.transportType, currentState.data)
+const onRemoveItem = (index, transportState) => {
+    transportState.data.splice(index, 1)
+    renderTablePubSub.notify(transportState.transportType, transportState.data)
 }
 
-const onAddItem = (e, currentState) => {
+const onAddItem = (e, transportState) => {
     const transportType = e.target.getAttribute('data-transport')
     const $data_inputs = document.querySelectorAll(`[data-transport="${transportType}"][data-input]`)
 
@@ -53,12 +53,20 @@ const onAddItem = (e, currentState) => {
         item.element.classList.remove('form-input-error')
     })
 
-    currentState.data.push(data.map(item => item.value))
-    renderTablePubSub.notify(transportType, currentState.data)
+    transportState.data.push(data.map(item => item.value))
+    renderTablePubSub.notify(transportType, transportState.data)
 }
-export const loadTransportes = frameDiv => runWithLoading(() => {
+
+const onInputChange = (e, transportState) => {
+    const { value } = e.target
+    const property = e.target.getAttribute('data-property')
+
+    transportState[property] = value
+}
+
+export const loadTransportes = (frameDiv, currentState) => runWithLoading(() => {
     frameLoad(null, 'pages/frames/3-transportes/transportes.html', frameDiv, () => {
-        const currentState = {
+        currentState.TRANSPORTES = {
             _transportType: 'transport-rail',
             get transportType() {
                 return this._transportType
@@ -69,26 +77,28 @@ export const loadTransportes = frameDiv => runWithLoading(() => {
                 renderFormFromTransportType(value)
             },
             data: [],
+            loadingType: null,
+            vehicleType: null,
+            horsePlate: null
         }
 
-        renderFormFromTransportType(currentState.transportType)
-
+        const transportState = currentState.TRANSPORTES
         const $transport_type = document.querySelector('#transport-type')
-        $transport_type.addEventListener('change', (e) => onChangeTransportType(e, currentState))
-
         const $add_transport_buttons = document.querySelectorAll('[data-event="add-transport"]')
-        $add_transport_buttons.forEach(element => element.addEventListener('click', (e) => onAddItem(e, currentState)))
+        const $collapse_buttons = document.querySelectorAll('.form-session-collapse')
+        const $data_inputs_that_change_properties_from_state = document.querySelectorAll('[data-input][data-property]')
 
+        renderFormFromTransportType(transportState.transportType)
+        $transport_type.addEventListener('change', (e) => onChangeTransportType(e, transportState))
+        $add_transport_buttons.forEach(element => element.addEventListener('click', (e) => onAddItem(e, transportState)))
         // Subscrição para quando o estado for alterado, o estado atualizado será renderizado na tabela
         renderTablePubSub.subscribe((transportType, data) => {
             const $table = document.querySelector(`table[data-transport="${transportType}"]`)
             
-            renderTable(data, $table, (index) => onRemoveItem(index, currentState))
+            renderTable(data, $table, (index) => onRemoveItem(index, transportState))
         })
-
-        const $collapse_buttons = document.querySelectorAll('.form-session-collapse')
-
         $collapse_buttons.forEach(el => el.addEventListener('click', collapseForm))
+        $data_inputs_that_change_properties_from_state.forEach(el => el.addEventListener('input', e => onInputChange(e, transportState)))
 
     })
 }, 'Carregando aba "Transportes"...')
