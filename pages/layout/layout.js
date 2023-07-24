@@ -16,6 +16,8 @@ export const loadLayout = () => runWithLoading(() => {
             DADOSGERAIS: {},
             TRANSPORTES: {},
             CONTEINERES: {},
+            SOLICITACOES: {},
+            REQUISITOS: {},
         }
 
         const frames = {
@@ -27,19 +29,45 @@ export const loadLayout = () => runWithLoading(() => {
             REQUISITOS: { index: 5, el: document.getElementById('requisitos'), fn: loadRequisitos, path: '/requisitos' },
         }
 
-        frames.DOCUMENTOS.el.addEventListener('click', () => tabSelect(frames.DOCUMENTOS))
-        frames.DADOSGERAIS.el.addEventListener('click', () => tabSelect(frames.DADOSGERAIS))
-        frames.TRANSPORTES.el.addEventListener('click', () => tabSelect(frames.TRANSPORTES))
-        frames.CONTEINERES.el.addEventListener('click', () => tabSelect(frames.CONTEINERES))
-        frames.SOLICITACOES.el.addEventListener('click', () => tabSelect(frames.SOLICITACOES))
-        frames.REQUISITOS.el.addEventListener('click', () => tabSelect(frames.REQUISITOS))
+        frames.DOCUMENTOS.el.addEventListener('click', () => {
+            if(!isThisTabAlreadyInitialized('DOCUMENTOS')) return 
+
+            tabSelect(frames.DOCUMENTOS)
+        })
+        frames.DADOSGERAIS.el.addEventListener('click', () => {
+            if(!isThisTabAlreadyInitialized('DADOSGERAIS')) return 
+
+            tabSelect(frames.DADOSGERAIS)
+        })
+        frames.TRANSPORTES.el.addEventListener('click', () => {
+            if(!isThisTabAlreadyInitialized('TRANSPORTES')) return 
+
+            tabSelect(frames.TRANSPORTES)
+        })
+        frames.CONTEINERES.el.addEventListener('click', () => {
+            if(!isThisTabAlreadyInitialized('CONTEINERES')) return 
+
+            tabSelect(frames.CONTEINERES)
+        
+        })
+        frames.SOLICITACOES.el.addEventListener('click', () => {
+            if(!isThisTabAlreadyInitialized('SOLICITACOES')) return 
+
+            tabSelect(frames.SOLICITACOES)
+        
+        })
+        frames.REQUISITOS.el.addEventListener('click', () => {
+            if(!isThisTabAlreadyInitialized('REQUISITOS')) return 
+
+            tabSelect(frames.REQUISITOS)
+        })
 
         const tabs = document.getElementById('header').children;
         const voltar = document.getElementById('voltar')
         const proximo = document.getElementById('proximo')
 
         const tabSelect = frame => {
-            frame.fn(document.getElementById('frame'), currentState)
+            frame.fn(document.getElementById('frame'), currentState, goToNextPageFn, goToPreviousPageFn)
             for (const tab of tabs) {
                 if (tab === frame.el) {
                     tab.classList.add('active')
@@ -120,23 +148,29 @@ export const loadLayout = () => runWithLoading(() => {
                 return frames.REQUISITOS
             }
             return null
-        }        
+        }
 
-        voltar.addEventListener('click', () => {
-            const currentIndex = getTabSelectedIndex()
-            if (currentIndex > 0) {
-                tabSelect(getFrameFromIndex(currentIndex - 1))
-            }
-        })
-
-        proximo.addEventListener('click', () => {
+        // Função que verifica se a tab que o usuário está tentando acessar no header já havia sido inicializada, se não já havia sido isso significa que a tab está a um ou mais passos a frente de onde o cliente ainda está, então seu acesso a ela é bloqueado
+        const isThisTabAlreadyInitialized = (frame) => {
+            return Object.keys(currentState[frame]).length > 0
+        }
+        
+        function goToNextPageFn(){
             const currentIndex = getTabSelectedIndex()
             if (currentIndex < 5) {
                 tabSelect(getFrameFromIndex(currentIndex + 1))
             } else {
                 //TODO implementar "finalização"
             }
-        })
+        }
+
+        function goToPreviousPageFn(){
+            const currentIndex = getTabSelectedIndex()
+            if (currentIndex > 0) {
+                tabSelect(getFrameFromIndex(currentIndex - 1))
+            }
+        
+        }
 
     })
 }, 'Carregando layout...')

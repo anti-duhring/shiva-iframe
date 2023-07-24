@@ -64,9 +64,9 @@
             </div>
         </div>
         <div class="modal-overlay" data-event="close-modal"></div>
-        <dialog open class="form-modal">
+        <dialog class="form-modal">
             <div class="modal-title">
-                <h2>Adicionar contêiner</h2>
+                <h2>Adicionar solicitação</h2>
                 <button data-event="close-modal">
                     <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
@@ -129,6 +129,208 @@
                     </div>
                 </div>
                 <!-- End step 2 -->
+                <!-- Begin step 3 -->
+                <h3>3. Lugar de origem</h3>
+                <div class="modal-content-row">
+                    <p>País de origem*</p>
+                    <div class="select-input">
+                        <select required>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="brasil">Brasil</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-content-row row-direction">
+                    <div>
+                        UF*
+                        <div class="select-input">
+                            <select required>
+                                <option disabled selected value="">Selecione...</option>
+                                <option value="sp">SP</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        Município*
+                        <div class="select-input">
+                            <select required>
+                                <option disabled selected value="">Selecione...</option>
+                                <option value="municipio-foo">Município Foo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- End step 3 -->
+                <!-- Begin step 4 -->
+                <h3>4. Ponto de ingresso</h3>
+                <div class="modal-content-row">
+                    <p>Ponto de ingresso*</p>
+                    <p>
+                        <input 
+                            class="text-input" 
+                            required
+                        >
+                    </p>
+                </div>
+                <!-- End step 4 -->
+                <!-- Begin step 5 -->
+                <h3>5. Nome e descrição dos volumes</h3>
+                <div class="modal-content-row">
+                    <p>País de origem*</p>
+                    <div class="select-input">
+                        <select required>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="volume-1">Volume 1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-content-row">
+                    <p>Número de volumes</p>
+                    <p>
+                        <input class="text-input"/>
+                    </p>
+                </div>
+                <div class="modal-content-row">
+                    <p>Outro número e descrição dos volumes</p>
+                    <p>
+                        <input class="text-input" />
+                    </p>
+                </div>
+                <!-- End step 5 -->
+                <!-- Begin step 6 -->
+                <h3>6. Nome do produto declarado</h3>
+                <div class="modal-content-row">
+                    <p>A seleção de produto se encontra disponível para o produto que deseja informar?</p>
+                    <p class="modal-checkbox-field">
+                        <span>
+                            <input type="radio" id="yes-dest-is-exporter" checked>
+                            <label for="yes-dest-is-exporter">Sim</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="no-dest-is-exporter">
+                            <label for="no-dest-is-exporter">Não</label>
+                        </span>
+                    </p>
+                </div>
+                <div class="modal-content-row">
+                    <p>NCM*</p>
+                    <div class="select-input">
+                        <select required>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="volume-1">NCM 1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-content-row">
+                    <p>Produto*</p>
+                    <div class="select-input">
+                        <select required>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="produto-1">Produto 1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-content-row">
+                    <p>Parte vegetal</p>
+                    <div class="select-input">
+                        <select>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="vegetal-1">Vegetal 1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-content-row">
+                    <p>Intenção de uso</p>
+                    <div class="select-input">
+                        <select>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="uso-1">Uso 1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-content-row">
+                    <p>Condição</p>
+                    <div class="select-input">
+                        <select>
+                            <option disabled selected value="">Selecione...</option>
+                            <option value="condicao-1">Condição 1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-content-row">
+                    <p>Descrição adicional de mercadoria</p>
+                    <p>
+                        <input class="text-input" />
+                    </p>
+                </div>
+                <!-- End step 6 -->
+                <!-- Begin step 7 -->
+                <h3>7. Quantidade declarada</h3>
+                <div class="modal-content-row row-direction">
+                    <div>
+                        Peso líquido*
+                        <input class="text-input" />
+                    </div>
+                    <div>
+                       Unidade
+                        <div class="select-input">
+                            <select>
+                                <option disabled selected value="">Selecione...</option>
+                                <option value="t">t</option>
+                                <option value="kg">kg</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-content-row row-direction">
+                    <div>
+                        Peso bruto
+                        <input class="text-input" />
+                    </div>
+                    <div>
+                       Unidade
+                        <div class="select-input">
+                            <select>
+                                <option disabled selected value="">Selecione...</option>
+                                <option value="kg">kg</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-content-row row-direction">
+                    <div>
+                        Outra quantidade
+                        <input class="text-input" />
+                    </div>
+                    <div>
+                       Unidade
+                        <div class="select-input">
+                            <select>
+                                <option disabled selected value="">Selecione...</option>
+                                <option value="kg">kg</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- End step 7 -->
+                <!-- Begin step 8 -->
+                <h3>8. Marcas distintivas</h3>
+                <div class="modal-content-row">
+                    <p>Marcas distintivas</p>
+                    <p>
+                        <textarea class="text-input"></textarea>
+                    </p>
+                </div>
+                <!-- End step 8 -->
+                <!-- Begin step 9 -->
+                <h3>8. Outras informações</h3>
+                <div class="modal-content-row">
+                    <p>Permissão de importação</p>
+                    <p>
+                        <input class="text-input" />
+                    </p>
+                </div>
+                <!-- End step 9 -->
             </div>
             <div class="modal-footer">
                 <button class="button-cancel" data-event="close-modal">Cancelar</button>

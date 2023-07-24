@@ -50,7 +50,7 @@ export const loadConteineres = (frameDiv, currentState) => runWithLoading(() => 
         }
 
         const containersState = currentState.CONTEINERES
-        const $open_modal_container = document.querySelector('[data-event="open-modal"]')
+        const $open_modal_button = document.querySelector('[data-event="open-modal"]')
         const $add_container_buttons = document.querySelectorAll('[data-event="add-container"]')
 
         // Subscrição para quando o estado for alterado, o estado atualizado será renderizado na tabela
@@ -58,7 +58,7 @@ export const loadConteineres = (frameDiv, currentState) => runWithLoading(() => 
             const $table = document.querySelector(`table`)
             renderTable(data, $table, (index) => onRemoveItem(index, containersState))
         })
-        $open_modal_container.addEventListener('click', openAndCloseModal)
+        $open_modal_button.addEventListener('click', openAndCloseModal)
         $add_container_buttons.forEach(element => element.addEventListener('click', () => onAddItem(containersState)))
         
     })

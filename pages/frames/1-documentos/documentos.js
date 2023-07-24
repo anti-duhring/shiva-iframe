@@ -7,31 +7,36 @@ import { frameLoad } from '../../../services/requests-service'
 const formDisablePubSub = factoryPubSub()
 const renderTablePubSub = factoryPubSub()
 
+const removeDisabledFieldsFromForm = (state) => {
+    if(state.dueIsSelected) {
+        document.querySelectorAll('input[name="use_cct"]').forEach(el => el.disabled = false)
+        document.querySelectorAll('.due-row').forEach(el => el.style.display = 'block')
+    }
+    if(!state.dueIsSelected) {
+        document.querySelectorAll('.due-row').forEach(el => el.style.display = 'none')
+        document.querySelectorAll('input[name="use_cct"]').forEach(el => el.disabled = true)
+        document.querySelector('#no_cct').checked = true
+        state.cctIsSelected = false
+    }
+
+    if(state.cctIsSelected) {
+        document.querySelectorAll('.cct-row').forEach(el => el.style.display = 'block')
+    }
+    if(!state.cctIsSelected) {
+        document.querySelectorAll('.cct-row').forEach(el => el.style.display = 'none')
+    }
+}
+
 const changeFormDisable = (e, documentsState) => {
     const documentType = e.target.getAttribute('data-document-type')
     const documentTypeIsEnabled = JSON.parse(e.target.getAttribute('data-document-type-enable'))
 
     documentsState[`${documentType}IsSelected`] = documentTypeIsEnabled
 
-    if(documentsState.dueIsSelected) {
-        document.querySelectorAll('input[name="use_cct"]').forEach(el => el.disabled = false)
-        document.querySelectorAll('.due-row').forEach(el => el.style.display = 'block')
-    }
-    if(!documentsState.dueIsSelected) {
-        document.querySelectorAll('.due-row').forEach(el => el.style.display = 'none')
-        document.querySelectorAll('input[name="use_cct"]').forEach(el => el.disabled = true)
-        document.querySelector('#no_cct').checked = true
-        documentsState.cctIsSelected = false
-    }
-
-    if(documentsState.cctIsSelected) {
-        document.querySelectorAll('.cct-row').forEach(el => el.style.display = 'block')
-    }
-    if(!documentsState.cctIsSelected) {
-        document.querySelectorAll('.cct-row').forEach(el => el.style.display = 'none')
-    }
-
+    removeDisabledFieldsFromForm(documentsState)
 }
+
+
 
 const onAddItem = (e, documentsState) => {
     const documentType = e.target.getAttribute('data-document-type')
@@ -94,18 +99,54 @@ const selectDocumentToLPCO = (e, documentsState) => {
     const $select = document.querySelector(`[data-document-type="${documentType}"][data-select]`)
     const documentToLPCO = $select.value
 
-    documentsState[`${documentType}SelectedToLPCO`] = documentToLPCO || null
+    // Se o valor do select NÃO for vazio, atribui o valor desse select ao estado atual, mas se o valor do select FOR vazio mas essa função ainda assim foi disparada, significa que essa página foi acessada através do botão "voltar" e é preciso recuperar os dados de um estado anterior
+    documentsState[`${documentType}SelectedToLPCO`] = documentToLPCO || documentsState[`${documentType}SelectedToLPCO`]
+
+    if(documentToLPCO) return 
+
+    // Caso o select esteja vazio mas existe uma opção escolhida no estado atual, então atribuir essa opção escolhida ao select
+    for (let i = 0; i < $select.options.length; i++) {
+        if ($select.options[i].value === documentsState[`${documentType}SelectedToLPCO`]) {
+            $select.options[i].selected = true;
+          break;
+        }
+    }
 }
 
-export const loadDocumentos = (frameDiv, currentState) => runWithLoading(() => {
+const onHandleNextPage = (goToNextPageFn, state) => {
+    const documentsState = state.DOCUMENTOS
+
+    console.log(documentsState)
+
+    if(!documentsState.dueIsSelected) {
+        goToNextPageFn()
+        return 
+    }
+
+    if(!documentsState.dueSelectedToLPCO || (documentsState.cctIsSelected && !documentsState.cctSelectedToLPCO)) {
+        alert('Selecione o documento para LPCO')
+        return
+    }
+
+    goToNextPageFn()
+}
+
+export const loadDocumentos = (frameDiv, currentState, goToNextPageFn) => runWithLoading(() => {
     frameLoad(null, 'pages/frames/1-documentos/documentos.html', frameDiv, () => {
-        currentState.DOCUMENTOS = {
-            dueIsSelected: true,
-            cctIsSelected: true,
-            dueSelectedToLPCO: null,
-            cctSelectedToLPCO: null,
-            due: [],
-            cct: [],
+        if(!Object.keys(currentState.DOCUMENTOS).length) {
+            // Caso o estado não tenha sido inicializado, inicializa-o com os valores padrão
+            currentState.DOCUMENTOS = {
+                dueIsSelected: true,
+                cctIsSelected: true,
+                dueSelectedToLPCO: null,
+                cctSelectedToLPCO: null,
+                due: [],
+                cct: [],
+            }
+        } else {
+            renderTablePubSub.notify('due', currentState.DOCUMENTOS['due'])
+            renderTablePubSub.notify('cct', currentState.DOCUMENTOS['cct'])
+            removeDisabledFieldsFromForm(currentState.DOCUMENTOS)
         }
 
         const documentsState = currentState.DOCUMENTOS
@@ -113,11 +154,17 @@ export const loadDocumentos = (frameDiv, currentState) => runWithLoading(() => {
         const $collapse_buttons = document.querySelectorAll('.form-session-collapse')
         const $add_document_buttons = document.querySelectorAll('[data-event="add-document"]')
         const $choose_document = document.querySelectorAll('[data-event="select-document"]')
+        const $next_page_button = document.querySelector('button#proximo')
 
         $change_form_disable_radios.forEach(el => el.addEventListener('change', (e) => formDisablePubSub.notify(e, documentsState)))
         $collapse_buttons.forEach(el => el.addEventListener('click', collapseForm))
         $add_document_buttons.forEach(el => el.addEventListener('click', (e) => onAddItem(e, documentsState)))
         $choose_document.forEach(el => el.addEventListener('change', (e) => selectDocumentToLPCO(e, documentsState)))
+
+        // Substituindo botão de "Salvar e avançar" para remover todos os antigos eventListeners
+        const clonedButton = $next_page_button.cloneNode(true)
+        $next_page_button.parentNode.replaceChild(clonedButton, $next_page_button)
+        clonedButton.addEventListener('click', () => onHandleNextPage(goToNextPageFn, currentState))
         
         // Subscrição para quando os campos "deseja usar DUE" e "deseja usar CCT" forem alterados, os formulários que serão exibidos também serão
         formDisablePubSub.subscribe(changeFormDisable)

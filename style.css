@@ -375,7 +375,7 @@ dialog.form-modal .modal-content-row {
     color: var(--dark-blue-color);
 }
 dialog.form-modal .modal-content-row p input {
-    width: 90%;
+    min-width: 93%;
 }
 dialog.form-modal .modal-content-row .select-input {
     width: 97%;
@@ -393,6 +393,25 @@ dialog.form-modal .modal-footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+dialog.form-modal .row-direction {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    column-gap: 1em;
+    margin-top: 1em;
+}
+
+dialog.form-modal .row-direction div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: .5em;
+    min-height: 3em;
+}
+dialog.form-modal .modal-content-row textarea.text-input {
+    min-width: 93%;
 }
 .modal-overlay {
     display: none;
