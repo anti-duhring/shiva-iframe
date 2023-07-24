@@ -1,5 +1,6 @@
 import { collapseForm } from '../../../services/collapse-form-service'
 import { runWithLoading } from '../../../services/loading-service'
+import { recoverFormData } from '../../../services/recover-form-data-service'
 import { frameLoad } from '../../../services/requests-service'
 
 const onInputChange = (e, generalDataState) => {
@@ -18,26 +19,6 @@ const onHandleNextPage = (goToNextPageFn, state) => {
     }
 
     goToNextPageFn()
-}
-
-const recoverFormData = (state) => {
-    const $data_inputs = document.querySelectorAll('[data-input]')
-    const $data_selects = document.querySelectorAll('[data-select]')
-
-    $data_inputs.forEach(el => {
-        const property = el.getAttribute('data-property')
-        el.value = state[property]
-    })
-    $data_selects.forEach(el => {
-        const property = el.getAttribute('data-property')
-        for (let i = 0; i < el.options.length; i++) {
-            if (el.options[i].value === state[property]) {
-                el.options[i].selected = true;
-              break;
-            }
-        }
-    
-    })
 }
 
 const handleSelectChange = (e, state) => {
