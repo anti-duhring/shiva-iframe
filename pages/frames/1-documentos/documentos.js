@@ -24,6 +24,7 @@ const removeDisabledFieldsFromForm = (state) => {
     }
     if(!state.cctIsSelected) {
         document.querySelectorAll('.cct-row').forEach(el => el.style.display = 'none')
+        document.querySelector('#no_cct').checked = true
     }
 }
 
