@@ -5,6 +5,13 @@ export const closeModal = () => {
     $overlay.style.display = 'none';
 }
 
+export const openModal = () => {
+    const $modal = document.querySelector('dialog.form-modal');
+    const $overlay = document.querySelector('div.modal-overlay');
+    $modal.setAttribute('open', 'true');
+    $overlay.style.display = 'block';
+}
+
 export const openAndCloseModal = () => {
     const $modal = document.querySelector('dialog.form-modal');
     const $overlay = document.querySelector('div.modal-overlay');
@@ -21,6 +28,4 @@ export const openAndCloseModal = () => {
 
         $closeModal.forEach(item => item.addEventListener('click', closeModal)) 
     }
-
-
 }

@@ -7,7 +7,7 @@
                 </p>
             </div>
             <div class="form-session-row">
-                <table class="form-table" data-transport="transport-road">
+                <table class="form-table">
                     <thead>
                             <tr>
                             <th>Solicitação</th>
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="modal-overlay" data-event="close-modal"></div>
-        <dialog class="form-modal">
+        <dialog class="form-modal" data-action-type="add" data-index-item="0">
             <div class="modal-title">
                 <h2>Adicionar solicitação</h2>
                 <button data-event="close-modal">
@@ -79,7 +79,7 @@
                 <div class="modal-content-row">
                     <p>País de destino*</p>
                     <div class="select-input">
-                        <select required>
+                        <select required data-select data-property="destinyCountry">
                             <option disabled selected value="">Selecione...</option>
                             <option value="brasil">Brasil</option>
                         </select>
@@ -88,7 +88,7 @@
                 <div class="modal-content-row">
                     <p>País de trânsito</p>
                     <div class="select-input">
-                        <select required>
+                        <select data-select data-property="transitingCountry">
                             <option disabled selected value="">Selecione...</option>
                             <option value="eua">EUA</option>
                         </select>
@@ -101,11 +101,11 @@
                     <p>O destinatário é o importador?</p>
                     <p class="modal-checkbox-field">
                         <span>
-                            <input type="radio" id="yes-dest-is-exporter" checked>
+                            <input type="radio" id="yes-dest-is-exporter" name="dest-is-exporter" checked data-radio data-property="recipientIsTheImporter" value="true" />
                             <label for="yes-dest-is-exporter">Sim</label>
                         </span>
                         <span>
-                            <input type="radio" id="no-dest-is-exporter">
+                            <input type="radio" id="no-dest-is-exporter" name="dest-is-exporter" data-radio data-property="recipientIsTheImporter" value="false" />
                             <label for="no-dest-is-exporter">Não</label>
                         </span>
                     </p>
@@ -113,7 +113,7 @@
                 <div class="modal-content-row">
                     <p>Nome do destinatário</p>
                     <div class="select-input">
-                        <select required>
+                        <select required data-select data-property="recipientName" data-index="2">
                             <option disabled selected value="">Selecione...</option>
                             <option value="distribuidora-foo-bar">DISTRIBUIDORA FOO BAR</option>
                         </select>
@@ -122,7 +122,7 @@
                 <div class="modal-content-row">
                     <p>Endereço do destinatário*</p>
                     <div class="select-input">
-                        <select required>
+                        <select required data-select data-property="recipientAddress">
                             <option disabled selected value="">Selecione...</option>
                             <option value="address-foo-bar">ENDEREÇO FOO BAR</option>
                         </select>
@@ -134,7 +134,7 @@
                 <div class="modal-content-row">
                     <p>País de origem*</p>
                     <div class="select-input">
-                        <select required>
+                        <select required data-select data-property="originCountry" data-index="3">
                             <option disabled selected value="">Selecione...</option>
                             <option value="brasil">Brasil</option>
                         </select>
@@ -144,7 +144,7 @@
                     <div>
                         UF*
                         <div class="select-input">
-                            <select required>
+                            <select required data-select data-property="originState">
                                 <option disabled selected value="">Selecione...</option>
                                 <option value="sp">SP</option>
                             </select>
@@ -153,7 +153,7 @@
                     <div>
                         Município*
                         <div class="select-input">
-                            <select required>
+                            <select required data-select data-property="originCity">
                                 <option disabled selected value="">Selecione...</option>
                                 <option value="municipio-foo">Município Foo</option>
                             </select>
@@ -169,6 +169,8 @@
                         <input 
                             class="text-input" 
                             required
+                            data-input
+                            data-property="entryPoint"
                         >
                     </p>
                 </div>
@@ -176,9 +178,9 @@
                 <!-- Begin step 5 -->
                 <h3>5. Nome e descrição dos volumes</h3>
                 <div class="modal-content-row">
-                    <p>País de origem*</p>
+                    <p>Descrição dos volumes*</p>
                     <div class="select-input">
-                        <select required>
+                        <select required data-select data-property="volumeDescription">
                             <option disabled selected value="">Selecione...</option>
                             <option value="volume-1">Volume 1</option>
                         </select>
@@ -187,13 +189,13 @@
                 <div class="modal-content-row">
                     <p>Número de volumes</p>
                     <p>
-                        <input class="text-input"/>
+                        <input class="text-input" data-input data-property="volumeNumber"/>
                     </p>
                 </div>
                 <div class="modal-content-row">
                     <p>Outro número e descrição dos volumes</p>
                     <p>
-                        <input class="text-input" />
+                        <input class="text-input" data-input data-property="otherVolumeDescriptionAndNumber" />
                     </p>
                 </div>
                 <!-- End step 5 -->
@@ -203,28 +205,28 @@
                     <p>A seleção de produto se encontra disponível para o produto que deseja informar?</p>
                     <p class="modal-checkbox-field">
                         <span>
-                            <input type="radio" id="yes-dest-is-exporter" checked>
-                            <label for="yes-dest-is-exporter">Sim</label>
+                            <input type="radio" id="yes-product-selection-is-avaliable" checked name="selection-is-avaliable" data-radio data-property="productSelectionIsAvaliable" value="true">
+                            <label for="yes-product-selection-is-avaliable">Sim</label>
                         </span>
                         <span>
-                            <input type="radio" id="no-dest-is-exporter">
-                            <label for="no-dest-is-exporter">Não</label>
+                            <input type="radio" id="no-product-selection-is-avaliable" name="selection-is-avaliable" data-radio data-property="productSelectionIsAvaliable" value="false">
+                            <label for="no-product-selection-is-avaliable">Não</label>
                         </span>
                     </p>
                 </div>
                 <div class="modal-content-row">
                     <p>NCM*</p>
                     <div class="select-input">
-                        <select required>
+                        <select required data-select data-property="ncm">
                             <option disabled selected value="">Selecione...</option>
-                            <option value="volume-1">NCM 1</option>
+                            <option value="ncm-1">NCM 1</option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-content-row">
                     <p>Produto*</p>
                     <div class="select-input">
-                        <select required>
+                        <select required data-select data-property="product" data-index="1">
                             <option disabled selected value="">Selecione...</option>
                             <option value="produto-1">Produto 1</option>
                         </select>
@@ -233,7 +235,7 @@
                 <div class="modal-content-row">
                     <p>Parte vegetal</p>
                     <div class="select-input">
-                        <select>
+                        <select data-select data-property="vegetablePiece">
                             <option disabled selected value="">Selecione...</option>
                             <option value="vegetal-1">Vegetal 1</option>
                         </select>
@@ -242,7 +244,7 @@
                 <div class="modal-content-row">
                     <p>Intenção de uso</p>
                     <div class="select-input">
-                        <select>
+                        <select data-select data-property="usageIntent">
                             <option disabled selected value="">Selecione...</option>
                             <option value="uso-1">Uso 1</option>
                         </select>
@@ -251,7 +253,7 @@
                 <div class="modal-content-row">
                     <p>Condição</p>
                     <div class="select-input">
-                        <select>
+                        <select data-select data-property="condition">
                             <option disabled selected value="">Selecione...</option>
                             <option value="condicao-1">Condição 1</option>
                         </select>
@@ -260,7 +262,7 @@
                 <div class="modal-content-row">
                     <p>Descrição adicional de mercadoria</p>
                     <p>
-                        <input class="text-input" />
+                        <input class="text-input" data-input data-property="additionalDescription" />
                     </p>
                 </div>
                 <!-- End step 6 -->
@@ -269,13 +271,13 @@
                 <div class="modal-content-row row-direction">
                     <div>
                         Peso líquido*
-                        <input class="text-input" />
+                        <input class="text-input" required data-input data-property="netWeight" />
                     </div>
                     <div>
                        Unidade
                         <div class="select-input">
-                            <select>
-                                <option disabled selected value="">Selecione...</option>
+                            <select data-select data-property="netWeightUnit">
+                                <option selected disabled value="">Selecione</option>
                                 <option value="t">t</option>
                                 <option value="kg">kg</option>
                             </select>
@@ -285,14 +287,15 @@
                 <div class="modal-content-row row-direction">
                     <div>
                         Peso bruto
-                        <input class="text-input" />
+                        <input class="text-input" data-input data-property="grossWeight" />
                     </div>
                     <div>
                        Unidade
                         <div class="select-input">
-                            <select>
-                                <option disabled selected value="">Selecione...</option>
+                            <select data-select data-property="grossWeightUnit">
+                                <option selected disabled value="">Selecione</option>
                                 <option value="kg">kg</option>
+                                <option value="t">t</option>
                             </select>
                         </div>
                     </div>
@@ -300,14 +303,15 @@
                 <div class="modal-content-row row-direction">
                     <div>
                         Outra quantidade
-                        <input class="text-input" />
+                        <input class="text-input" data-input data-property="anotherAmount" />
                     </div>
                     <div>
                        Unidade
                         <div class="select-input">
-                            <select>
-                                <option disabled selected value="">Selecione...</option>
+                            <select data-select data-property="anotherAmountUnit">
+                                <option selected disabled value="">Selecione</option>
                                 <option value="kg">kg</option>
+                                <option value="t">t</option>
                             </select>
                         </div>
                     </div>
@@ -318,16 +322,16 @@
                 <div class="modal-content-row">
                     <p>Marcas distintivas</p>
                     <p>
-                        <textarea class="text-input"></textarea>
+                        <textarea class="text-input" data-input data-property="distinctiveMarks"></textarea>
                     </p>
                 </div>
                 <!-- End step 8 -->
                 <!-- Begin step 9 -->
-                <h3>8. Outras informações</h3>
+                <h3>9. Outras informações</h3>
                 <div class="modal-content-row">
                     <p>Permissão de importação</p>
                     <p>
-                        <input class="text-input" />
+                        <input class="text-input" data-input data-property="importPermission" />
                     </p>
                 </div>
                 <!-- End step 9 -->

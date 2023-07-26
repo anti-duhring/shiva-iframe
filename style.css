@@ -152,8 +152,8 @@ button {
     padding: .9em;
     min-width: 17em;
 }
-.form-input-error {
-    border-color: red;
+.form-input-error, .select-input select.form-input-error  {
+    border: 1px solid red;
 }
 .select-input select{
     appearance: none;
