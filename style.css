@@ -236,14 +236,14 @@ button.form-session-collapse:hover {
     align-items: stretch;
     column-gap: 1em;
 }
-.form-session-row.row-direction {
+.row-direction {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     column-gap: 1em;
 }
 
-.form-session-row.row-direction p {
+.row-direction p {
     display: flex;
     flex-direction: column;
     row-gap: .5em;
@@ -424,3 +424,22 @@ dialog.form-modal .modal-content-row textarea.text-input {
     z-index: 99;
 }
 /* end of modal */
+/* Box */
+.box-item {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    column-gap: 1em;
+    color: black;
+}
+
+.box-container {
+    border: 1px solid grey;
+    padding: .5em;
+    margin: .5em;
+}
+.box-item .row-direction p {
+    color: var(--dark-blue-color);
+}
+/* end of box */
