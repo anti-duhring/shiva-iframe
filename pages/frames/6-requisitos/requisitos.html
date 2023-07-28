@@ -12,7 +12,10 @@
             <div class="box-container">
                 <div class="box-item">
                     <div>
-                        <input type="radio" name="des" id="des-1">
+                        <label class="radio-container">
+                            <input type="radio" name="des" id="des-1" checked>
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div>
                         <h2>Tratamento - DES</h2>
@@ -36,8 +39,11 @@
                     </div>
                 </div>
                 <div class="box-item">
-                    <div>
-                        <input type="radio" name="des" id="des-2">
+                    <div class="box-input-container">
+                        <label class="radio-container">
+                            <input type="radio" name="des" id="des-2">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div>
                         <h2>Tratamento - DES</h2>
@@ -48,7 +54,10 @@
                 </div>
                 <div class="box-item">
                     <div>
-                        <input type="radio" name="des" id="des-3">
+                        <label class="radio-container">
+                            <input type="radio" name="des" id="des-3">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div>
                         <h2>Tratamento - DES</h2>
@@ -61,7 +70,10 @@
             <div class="box-container">
                 <div class="box-item">
                     <div>
-                        <input type="radio" name="des" id="des-1">
+                        <label class="radio-container">
+                            <input type="radio" name="des2" id="des-4" checked>
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div>
                         <h2>Tratamento - DES</h2>
@@ -75,14 +87,17 @@
                             </p>
                             <p>
                                 CFOC
-                                <input class="text-input" placeholder="Anexar no PU" />
+                                <input class="text-input" />
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="box-item">
                     <div>
-                        <input type="radio" name="des" id="des-2">
+                        <label class="radio-container">
+                            <input type="radio" name="des2" id="des-5">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div>
                         <h2>Tratamento - DES</h2>
@@ -92,9 +107,10 @@
                     </div>
                 </div>
                 <div class="box-item">
-                    <div>
-                        <input type="radio" name="des" id="des-3">
-                    </div>
+                    <label class="radio-container">
+                        <input type="radio" name="des2" id="des-6">
+                        <span class="checkmark"></span>
+                    </label>
                     <div>
                         <h2>Tratamento - DES</h2>
                         <p>
@@ -102,6 +118,95 @@
                         </p>
                     </div>
                 </div>
+            </div>
+            <div class="description">
+                <h2>Declaração adicional - UE16.1</h2>
+                <p>
+                    descricao
+                </p>
+            </div>
+            <div class="description">
+                <h2>Declaração adicional - UE16.1</h2>
+                <p>
+                    descricao
+                </p>
+            </div>
+            <div class="description">
+                <h2>Declaração adicional - UE16.1</h2>
+                <p>
+                    descricao
+                </p>
+            </div>
+            <div class="description">
+                <h2>Declaração adicional - UE16.1</h2>
+                <p>
+                    descricao
+                </p>
+            </div>
+            <div class="description">
+                <h2>Declaração adicional - UE16.1</h2>
+                <p>
+                    descricao
+                </p>
+            </div>
+            <div class="form-session-row">
+                <p>
+                    <button class="button-primary" data-event="open-modal">Adicionar cumprimento complementar</button>
+                </p>
+            </div>
+            <div class="form-session-row">
+                <table class="form-table" data-transport="transport-road">
+                    <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Cumprimento complementar</th>
+                                <th></th>
+                            </tr>
+                    </thead> 
+                    <tbody>
+                        <tr class="form-table-empty-tr">
+                            <td colspan="2">Nenhum item cadastrado</td>
+                            <td class="table-action-cell"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                <div class="table-control-container">
+                                    <button class="table-control" id="fast-skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="skip-back">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-current-page" id="current-page">1</span>
+                                    <button class="table-control" id="skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="table-control" id="fast-skip-next">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4 18 8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="table-control-pagination-info" id="pagination-info">1 - 1 de 1 itens</span>
+                                </div>
+                            </td>
+                            <th>
+                                <select id="pagination-max">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                REGISTROS POR PÁGINA
+                            </th>
+                        </tr>
+                    </tfoot>
+                    </table>
             </div>
         </div>
     </div>
